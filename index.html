@@ -5,233 +5,310 @@
 <title>KTA Pengadilan Negeri Kota Indopride</title>
 
 <style>
-:root{
-  --hitam:#121212;
-  --marun:#6b0f1a;
-  --emas:#c9a44c;
-  --kertas:#f4f1ea;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&display=swap');
+
+body {
+    background:#bfbfbf;
+    font-family: 'Inter', sans-serif;
 }
 
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  background:#999;
-  font-family:"Times New Roman", serif;
-}
-
-/* ================= INPUT ================= */
-#input-box{
-  background:#eee;
-  padding:14px;
-}
-#input-box input{
-  padding:8px;
-  width:100%;
-  margin-bottom:8px;
-}
-
-/* ================= KARTU ================= */
-.kta{
-  width:1000px;
-  height:600px;
-  margin:20px auto;
-  background:var(--kertas);
-  position:relative;
-  box-shadow:0 25px 60px rgba(0,0,0,.5);
-  overflow:hidden;
-}
-
-/* WATERMARK */
-.kta::before{
-  content:"⚖";
-  position:absolute;
-  font-size:420px;
-  color:rgba(0,0,0,.03);
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+.card {
+    width: 1000px;
+    height: 650px;
+    background: #f7f4ee;
+    margin: 40px auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,.35);
+    position: relative;
+    overflow: hidden;
 }
 
 /* HEADER */
-.header{
-  background:linear-gradient(to right,#000,#222);
-  color:#fff;
-  padding:22px 30px;
+.header {
+    background: linear-gradient(90deg,#000,#222);
+    color: #fff;
+    padding: 25px 40px;
+    display: flex;
+    align-items: center;
 }
-.header h1{
-  margin:0;
-  letter-spacing:4px;
+
+.header img {
+    height: 70px;
+    margin-right: 25px;
 }
-.header p{
-  margin:6px 0 0;
-  letter-spacing:2px;
+
+.header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.header p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    opacity: .85;
 }
 
 /* STRIP */
-.strip{
-  background:var(--marun);
-  color:#fff;
-  display:flex;
-  justify-content:space-between;
-  padding:10px 30px;
-  font-weight:bold;
-  letter-spacing:2px;
+.strip {
+    background: #6b1115;
+    color: #fff;
+    padding: 12px 40px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 /* CONTENT */
-.content{
-  display:flex;
-  padding:30px;
-  position:relative;
-  z-index:2;
+.content {
+    display: flex;
+    padding: 40px;
+    position: relative;
 }
 
-.data{
-  flex:2;
-  padding:20px;
-  background:#eae4d8;
-  border-left:7px solid var(--emas);
-}
-.data h2{
-  margin:14px 0 6px;
-  font-size:36px;
-}
-.data h3{
-  margin:0;
-  font-weight:normal;
-}
-.data p{
-  margin-top:18px;
-  font-size:14px;
+/* WATERMARK */
+.watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 520px;
+    opacity: 0.06;
+    transform: translate(-50%, -50%);
+    z-index: 0;
 }
 
-/* FOTO */
-.foto{
-  flex:1;
-  text-align:center;
-}
-.foto img{
-  width:260px;
-  height:330px;
-  object-fit:cover;
-  border:7px solid var(--marun);
-  background:#fff;
+.left {
+    width: 65%;
+    z-index: 1;
 }
 
-/* FOOTER */
-.footer{
-  position:absolute;
-  bottom:18px;
-  left:30px;
-  z-index:2;
-}
-.footer img{
-  height:45px;
-}
-.footer p{
-  margin:4px 0;
+.block {
+    background: #ece8df;
+    padding: 30px 35px;
+    border-left: 6px solid #caa24a;
 }
 
-/* MASA BERLAKU */
-.valid{
-  position:absolute;
-  right:0;
-  bottom:0;
-  background:var(--marun);
-  color:#fff;
-  padding:16px 22px;
-  font-weight:bold;
-  text-align:center;
-  letter-spacing:1px;
+.block small {
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #6b1115;
 }
 
-/* PRINT */
-@media print{
-  #input-box{display:none}
-  body{background:#fff}
-  .kta{box-shadow:none}
+.name {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    margin: 10px 0;
+}
+
+.divisi {
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.address {
+    font-size: 14px;
+    margin-top: 8px;
+    opacity: .85;
+}
+
+/* INPUT */
+.form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+/* SIGNATURE */
+.signature {
+    margin-top: 30px;
+}
+
+.signature img {
+    height: 60px;
+}
+
+.signature .title {
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.signature .name {
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+/* PHOTO */
+.photo {
+    width: 280px;
+    margin-left: auto;
+    z-index: 1;
+}
+
+.photo-box {
+    width: 260px;
+    height: 330px;
+    border: 5px solid #6b1115;
+    outline: 3px solid #caa24a;
+    outline-offset: -10px;
+    background: #000;
+    position: relative;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-box input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.valid {
+    background: #6b1115;
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+    margin-top: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= INPUT DATA ================= -->
-<div id="input-box">
-  <input placeholder="Nama Lengkap" oninput="setText('nama',this.value)">
-  <input placeholder="Jabatan" oninput="setText('jabatan',this.value)">
-  <input type="date" oninput="setTanggal(this.value)">
-  <input type="file" accept="image/*" onchange="setFoto(this)">
-</div>
+<div class="card">
 
-<!-- ================= KARTU ================= -->
-<div class="kta">
-
-  <div class="header">
-    <h1>KARTU TANDA ANGGOTA</h1>
-    <p>PENGADILAN NEGERI KOTA INDOPRIDE</p>
-  </div>
-
-  <div class="strip">
-    <div>PERANGKAT PENGADILAN</div>
-    <div id="nomor"></div>
-  </div>
-
-  <div class="content">
-    <div class="data">
-      <p><b>LEMBAGA KEHAKIMAN</b></p>
-      <h2 id="nama">NAMA ANGGOTA</h2>
-      <h3 id="jabatan">JABATAN</h3>
-      <p>
-        Jl. Occupation Avenue Kota Indopride<br>
-        Kode Pos 7239
-      </p>
+    <div class="header">
+        <img src="logo.png">
+        <div>
+            <h1>KARTU TANDA ANGGOTA</h1>
+            <p>PENGADILAN NEGERI KOTA INDOPRIDE</p>
+        </div>
     </div>
 
-    <div class="foto">
-      <img id="foto">
+    <div class="strip">
+        <span>PERANGKAT PENGADILAN</span>
+        <span id="nomor"></span>
     </div>
-  </div>
 
-  <div class="footer">
-    <p><b>KEPALA PENGADILAN</b></p>
-    <img src="signature.png">
-    <p>KOWE GORILA</p>
-  </div>
+    <div class="content">
+        <img src="scales.png" class="watermark">
 
-  <div class="valid">
-    BERLAKU HINGGA<br>
-    <span id="tanggal">—</span>
-  </div>
+        <div class="left">
+            <div class="block">
+                <small>LEMBAGA KEHAKIMAN</small>
 
+                <!-- INPUT -->
+                <div class="form">
+                    <input id="namaInput" placeholder="Nama Anggota">
+                    <input id="jabatanInput" placeholder="Jabatan">
+                    <input id="validInput" type="date">
+                </div>
+
+                <!-- OUTPUT -->
+                <div class="name" id="namaDisplay">NAMA ANGGOTA</div>
+                <div class="divisi" id="jabatanDisplay">JABATAN</div>
+                <div class="address">
+                    Jl. Occupation Avenue Kota Indopride – Kode Pos 7239
+                </div>
+            </div>
+
+            <div class="signature">
+                <div class="title">KEPALA PENGADILAN</div>
+                <img src="signature.png">
+                <div class="name">KOWE GORILA</div>
+            </div>
+        </div>
+
+        <div class="photo">
+            <div class="photo-box">
+                <img id="photoPreview" src="foto-default.png">
+                <input type="file" id="photoInput" accept="image/*">
+            </div>
+            <div class="valid" id="validDate">BERLAKU HINGGA</div>
+        </div>
+    </div>
 </div>
 
 <script>
-/* NOMOR ANGGOTA (STABIL SAAT LOAD) */
-document.getElementById("nomor").innerText =
-"NO. PN-IDP-" + new Date().getFullYear() + "-" +
-Math.floor(Math.random()*900000+100000);
-
-/* LIVE INPUT */
-function setText(id,val){
-  document.getElementById(id).innerText =
-  val || id.toUpperCase();
+/* NOMOR ANGGOTA (TETAP) */
+if(!localStorage.getItem("ktaNumber")){
+    const y = new Date().getFullYear();
+    const r = Math.floor(100000 + Math.random()*900000);
+    localStorage.setItem("ktaNumber", `PN-IDP-${y}-${r}`);
 }
+document.getElementById("nomor").innerText =
+"NO. " + localStorage.getItem("ktaNumber");
+
+/* BIND INPUT */
+function bind(idInput,idDisplay,key,defaultText){
+    const i=document.getElementById(idInput);
+    const d=document.getElementById(idDisplay);
+
+    const saved=localStorage.getItem(key);
+    if(saved){
+        i.value=saved;
+        d.innerText=saved;
+    } else {
+        d.innerText=defaultText;
+    }
+
+    i.addEventListener("input",()=>{
+        d.innerText=i.value||defaultText;
+        localStorage.setItem(key,i.value);
+    });
+}
+
+bind("namaInput","namaDisplay","ktaNama","NAMA ANGGOTA");
+bind("jabatanInput","jabatanDisplay","ktaJabatan","JABATAN");
+
+/* MASA BERLAKU */
+const vI=document.getElementById("validInput");
+const vD=document.getElementById("validDate");
+
+if(localStorage.getItem("ktaValid")){
+    vI.value=localStorage.getItem("ktaValid");
+    setTanggal(vI.value);
+}
+
+vI.addEventListener("change",()=>{
+    localStorage.setItem("ktaValid",vI.value);
+    setTanggal(vI.value);
+});
 
 function setTanggal(val){
-  if(!val) return;
-  const d=new Date(val);
-  document.getElementById("tanggal").innerText =
-  d.toLocaleDateString("id-ID",
-  {day:"numeric",month:"long",year:"numeric"});
+    if(!val) return;
+    vD.innerText="BERLAKU HINGGA\n"+
+    new Date(val).toLocaleDateString("id-ID",
+    {day:'2-digit',month:'long',year:'numeric'});
 }
 
-function setFoto(input){
-  const r=new FileReader();
-  r.onload=e=>document.getElementById("foto").src=e.target.result;
-  r.readAsDataURL(input.files[0]);
+/* FOTO */
+const pI=document.getElementById("photoInput");
+const pP=document.getElementById("photoPreview");
+
+if(localStorage.getItem("ktaPhoto")){
+    pP.src=localStorage.getItem("ktaPhoto");
 }
+
+pI.addEventListener("change",()=>{
+    const f=pI.files[0];
+    if(!f) return;
+    const r=new FileReader();
+    r.onload=e=>{
+        pP.src=e.target.result;
+        localStorage.setItem("ktaPhoto",e.target.result);
+    };
+    r.readAsDataURL(f);
+});
 </script>
 
 </body>
