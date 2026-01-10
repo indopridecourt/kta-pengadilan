@@ -5,9 +5,9 @@
 <title>KTA Pengadilan Kota Indopride</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Cinzel:wght@500;700&family=Inter:wght@400;600&display=swap');
 
-body {
+body{
     background:#bfbfbf;
     font-family:'Inter',sans-serif;
 }
@@ -19,7 +19,6 @@ body {
     margin:40px auto;
     box-shadow:0 20px 40px rgba(0,0,0,.35);
     position:relative;
-    overflow:hidden;
 }
 
 /* HEADER */
@@ -32,8 +31,8 @@ body {
 }
 .header img{height:70px;margin-right:25px}
 .header h1{
-    font-family:'Playfair Display',serif;
-    font-size:38px;
+    font-family:'Cinzel',serif;
+    font-size:36px;
     margin:0;
     letter-spacing:2px;
 }
@@ -58,7 +57,6 @@ body {
     padding:6px 14px;
     font-size:12px;
     cursor:pointer;
-    z-index:20;
 }
 
 /* CONTENT */
@@ -85,13 +83,24 @@ body {
     letter-spacing:1px;
     color:#6b1115;
 }
+
+/* FONT NAMA ANGGOTA */
 .name{
-    font-family:'Playfair Display',serif;
-    font-size:34px;
-    margin:10px 0;
+    font-family:'Merriweather',serif;
+    font-size:32px;
+    font-weight:700;
+    margin:12px 0;
+    color:#111;
 }
-.divisi{font-size:18px;font-weight:600}
-.address{font-size:14px;margin-top:8px;opacity:.85}
+.divisi{
+    font-size:18px;
+    font-weight:600;
+}
+.address{
+    font-size:14px;
+    margin-top:8px;
+    opacity:.85;
+}
 
 /* FORM */
 .form{display:none;margin-bottom:12px}
@@ -100,28 +109,28 @@ body {
     width:100%;
     padding:10px;
     margin-top:8px;
-    font-size:14px;
 }
 
-/* SIGNATURE (FINAL PRESISI) */
+/* SIGNATURE – DIGESER KE POJOK */
 .signature{
-    margin-top:42px;
+    margin-top:40px;
+    text-align:right;
+    padding-right:40px;
 }
 .signature .title{
-    font-size:14px;
+    font-size:13px;
     font-weight:700;
     letter-spacing:1px;
-    margin-bottom:12px;
 }
 .signature img{
-    height:85px;
-    margin:6px 0;
+    height:90px;
+    margin:8px 0;
 }
 .signature .name{
-    font-family:'Playfair Display',serif;
+    font-family:'Cinzel',serif;
     font-size:18px;
-    font-weight:600;
-    margin-top:8px;
+    font-weight:700;
+    letter-spacing:1px;
 }
 
 /* PHOTO */
@@ -157,7 +166,7 @@ body {
 /* PRINT */
 @media print{
     body{background:#fff}
-    #editBtn,.form{display:none!important}
+    #editBtn,.form{display:none}
     .card{box-shadow:none}
 }
 </style>
