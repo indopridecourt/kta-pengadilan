@@ -5,7 +5,7 @@
 <title>KTA Pengadilan Kota Indopride</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Cinzel:wght@600;700&family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Cinzel:wght@700&family=Inter:wght@500;600&display=swap');
 
 body{
     background:#bfbfbf;
@@ -32,32 +32,32 @@ body{
 .header img{height:70px;margin-right:25px}
 .header h1{
     font-family:'Cinzel',serif;
-    font-size:36px;
+    font-size:38px;
     margin:0;
     letter-spacing:2px;
 }
-.header p{margin:5px 0 0;font-size:14px;opacity:.85}
+.header p{margin:6px 0 0;font-size:15px;opacity:.9}
 
 /* STRIP */
 .strip{
     background:#6b1115;
     color:#fff;
-    padding:12px 40px;
+    padding:14px 40px;
     display:flex;
     justify-content:space-between;
-    font-weight:600;
-    letter-spacing:1px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    font-size:14px;
 }
 
-/* EDIT BUTTON */
+/* EDIT */
 #editBtn{
     position:absolute;
-    top:170px;
+    top:175px;
     right:40px;
-    padding:6px 14px;
-    font-size:12px;
+    padding:7px 16px;
+    font-size:13px;
     cursor:pointer;
-    z-index:10;
 }
 
 /* CONTENT */
@@ -76,51 +76,59 @@ body{
 .left{width:65%;z-index:1}
 .block{
     background:#ece8df;
-    padding:30px 35px;
-    border-left:6px solid #caa24a;
+    padding:32px 36px;
+    border-left:7px solid #caa24a;
 }
 .block small{
     font-weight:700;
-    letter-spacing:1px;
+    letter-spacing:1.2px;
     color:#6b1115;
+    font-size:13px;
 }
 
-/* TEXT */
+/* TEXT – DIBESARKAN */
 .name{
     font-family:'Merriweather',serif;
-    font-size:32px;
+    font-size:40px;
     font-weight:700;
-    margin:12px 0;
+    margin:14px 0;
 }
-.divisi{font-size:18px;font-weight:600}
-.address{font-size:14px;margin-top:8px;opacity:.85}
+.divisi{
+    font-size:22px;
+    font-weight:600;
+}
+.address{
+    font-size:15px;
+    margin-top:10px;
+    opacity:.9;
+}
 
 /* FORM */
-.form{display:none;margin-bottom:12px}
+.form{display:none;margin-bottom:14px}
 .card.edit-mode .form{display:block}
 .form input{
     width:100%;
-    padding:10px;
-    margin-top:8px;
+    padding:12px;
+    margin-top:10px;
+    font-size:15px;
 }
 
-/* SIGNATURE – KIRI */
+/* SIGNATURE – BESAR & TEGAS */
 .signature{
-    margin-top:40px;
-    text-align:left;
+    margin-top:48px;
 }
 .signature .title{
-    font-size:13px;
+    font-size:15px;
     font-weight:700;
-    letter-spacing:1px;
+    letter-spacing:1.5px;
 }
 .signature img{
-    height:90px;
-    margin:8px 0;
+    height:95px;
+    margin:10px 0;
 }
 .signature .name{
     font-family:'Cinzel',serif;
-    font-size:18px;
+    font-size:22px;
     font-weight:700;
 }
 
@@ -148,9 +156,11 @@ body{
     background:#6b1115;
     color:#fff;
     text-align:center;
-    padding:12px;
-    margin-top:10px;
+    padding:14px;
+    margin-top:12px;
     font-weight:700;
+    letter-spacing:1.2px;
+    font-size:15px;
 }
 
 /* PRINT */
@@ -185,7 +195,6 @@ body{
 <img src="scales.png" class="watermark">
 
 <div class="left">
-
 <div class="block">
 <small>LEMBAGA KEHAKIMAN</small>
 
@@ -207,7 +216,6 @@ Jl. Occupation Avenue Kota Indopride – Kode Pos 7239
 <img src="signature.png">
 <div class="name">KOWE GORILA</div>
 </div>
-
 </div>
 
 <div class="photo">
@@ -222,26 +230,20 @@ Jl. Occupation Avenue Kota Indopride – Kode Pos 7239
 </div>
 
 <script>
-/* EDIT MODE – FIX */
 const card=document.getElementById("card");
 const btn=document.getElementById("editBtn");
 btn.onclick=()=>{
     card.classList.toggle("edit-mode");
-    btn.innerText = card.classList.contains("edit-mode")
-        ? "SELESAI"
-        : "EDIT DATA";
+    btn.innerText=card.classList.contains("edit-mode")?"SELESAI":"EDIT DATA";
 };
 
-/* NOMOR */
 if(!localStorage.getItem("ktaNumber")){
     const y=new Date().getFullYear();
     const r=Math.floor(100000+Math.random()*900000);
     localStorage.setItem("ktaNumber",`PN-IDP-${y}-${r}`);
 }
-document.getElementById("nomor").innerText=
-"NO. "+localStorage.getItem("ktaNumber");
+document.getElementById("nomor").innerText="NO. "+localStorage.getItem("ktaNumber");
 
-/* INPUT */
 function bind(i,d,k,def){
     const I=document.getElementById(i);
     const D=document.getElementById(d);
@@ -256,7 +258,6 @@ function bind(i,d,k,def){
 bind("namaInput","namaDisplay","ktaNama","NAMA ANGGOTA");
 bind("jabatanInput","jabatanDisplay","ktaJabatan","JABATAN");
 
-/* TANGGAL */
 const vI=document.getElementById("validInput");
 const vD=document.getElementById("validDate");
 if(localStorage.getItem("ktaValid")){
@@ -274,7 +275,6 @@ function setDate(v){
     {day:'2-digit',month:'long',year:'numeric'});
 }
 
-/* FOTO */
 const pI=document.getElementById("photoInput");
 const pP=document.getElementById("photoPreview");
 if(localStorage.getItem("ktaPhoto")){
