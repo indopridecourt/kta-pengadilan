@@ -5,7 +5,7 @@
 <title>KTA Pengadilan Kota Indopride</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Cinzel:wght@700&family=Inter:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:wght@700&family=Inter:wght@500;600&display=swap');
 
 body{
     background:#bfbfbf;
@@ -36,7 +36,7 @@ body{
     margin:0;
     letter-spacing:2px;
 }
-.header p{margin:6px 0 0;font-size:15px;opacity:.9}
+.header p{margin-top:6px;font-size:15px}
 
 /* STRIP */
 .strip{
@@ -47,7 +47,6 @@ body{
     justify-content:space-between;
     font-weight:700;
     letter-spacing:1.5px;
-    font-size:14px;
 }
 
 /* EDIT */
@@ -58,15 +57,21 @@ body{
     padding:7px 16px;
     font-size:13px;
     cursor:pointer;
+    z-index:10;
 }
 
 /* CONTENT */
-.content{display:flex;padding:40px;position:relative}
+.content{
+    display:flex;
+    padding:40px;
+    position:relative;
+}
 
 /* WATERMARK */
 .watermark{
     position:absolute;
-    top:50%;left:50%;
+    top:50%;
+    left:50%;
     width:520px;
     opacity:.06;
     transform:translate(-50%,-50%);
@@ -76,7 +81,7 @@ body{
 .left{width:65%;z-index:1}
 .block{
     background:#ece8df;
-    padding:32px 36px;
+    padding:34px 38px;
     border-left:7px solid #caa24a;
 }
 .block small{
@@ -86,11 +91,10 @@ body{
     font-size:13px;
 }
 
-/* TEXT – DIBESARKAN */
+/* TEXT */
 .name{
     font-family:'Merriweather',serif;
     font-size:40px;
-    font-weight:700;
     margin:14px 0;
 }
 .divisi{
@@ -103,9 +107,14 @@ body{
     opacity:.9;
 }
 
-/* FORM */
-.form{display:none;margin-bottom:14px}
-.card.edit-mode .form{display:block}
+/* FORM – FIXED */
+.form{
+    display:none;
+    margin-bottom:14px;
+}
+.edit-mode .form{
+    display:block;
+}
 .form input{
     width:100%;
     padding:12px;
@@ -113,7 +122,7 @@ body{
     font-size:15px;
 }
 
-/* SIGNATURE – BESAR & TEGAS */
+/* SIGNATURE – KIRI & BESAR */
 .signature{
     margin-top:48px;
 }
@@ -129,13 +138,13 @@ body{
 .signature .name{
     font-family:'Cinzel',serif;
     font-size:22px;
-    font-weight:500;
 }
 
 /* PHOTO */
 .photo{width:280px;margin-left:auto;z-index:1}
 .photo-box{
-    width:260px;height:330px;
+    width:260px;
+    height:330px;
     border:5px solid #6b1115;
     outline:3px solid #caa24a;
     outline-offset:-10px;
@@ -143,7 +152,8 @@ body{
     position:relative;
 }
 .photo-box img{
-    width:100%;height:100%;
+    width:100%;
+    height:100%;
     object-fit:cover;
 }
 .photo-box input{
@@ -160,7 +170,6 @@ body{
     margin-top:12px;
     font-weight:700;
     letter-spacing:1.2px;
-    font-size:15px;
 }
 
 /* PRINT */
@@ -195,6 +204,7 @@ body{
 <img src="scales.png" class="watermark">
 
 <div class="left">
+
 <div class="block">
 <small>LEMBAGA KEHAKIMAN</small>
 
@@ -216,6 +226,7 @@ Jl. Occupation Avenue Kota Indopride – Kode Pos 7239
 <img src="signature.png">
 <div class="name">KOWE GORILA</div>
 </div>
+
 </div>
 
 <div class="photo">
@@ -232,18 +243,24 @@ Jl. Occupation Avenue Kota Indopride – Kode Pos 7239
 <script>
 const card=document.getElementById("card");
 const btn=document.getElementById("editBtn");
+
 btn.onclick=()=>{
     card.classList.toggle("edit-mode");
-    btn.innerText=card.classList.contains("edit-mode")?"SELESAI":"EDIT DATA";
+    btn.innerText = card.classList.contains("edit-mode")
+        ? "SELESAI"
+        : "EDIT DATA";
 };
 
+/* NOMOR */
 if(!localStorage.getItem("ktaNumber")){
     const y=new Date().getFullYear();
     const r=Math.floor(100000+Math.random()*900000);
     localStorage.setItem("ktaNumber",`PN-IDP-${y}-${r}`);
 }
-document.getElementById("nomor").innerText="NO. "+localStorage.getItem("ktaNumber");
+document.getElementById("nomor").innerText=
+"NO. "+localStorage.getItem("ktaNumber");
 
+/* DATA */
 function bind(i,d,k,def){
     const I=document.getElementById(i);
     const D=document.getElementById(d);
@@ -258,6 +275,7 @@ function bind(i,d,k,def){
 bind("namaInput","namaDisplay","ktaNama","NAMA ANGGOTA");
 bind("jabatanInput","jabatanDisplay","ktaJabatan","JABATAN");
 
+/* TANGGAL */
 const vI=document.getElementById("validInput");
 const vD=document.getElementById("validDate");
 if(localStorage.getItem("ktaValid")){
@@ -275,6 +293,7 @@ function setDate(v){
     {day:'2-digit',month:'long',year:'numeric'});
 }
 
+/* FOTO */
 const pI=document.getElementById("photoInput");
 const pP=document.getElementById("photoPreview");
 if(localStorage.getItem("ktaPhoto")){
@@ -294,4 +313,3 @@ pI.onchange=()=>{
 
 </body>
 </html>
-
