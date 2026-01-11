@@ -2,261 +2,256 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Editor KTA Pengadilan Kota Indopride</title>
+    <title>KTA Premium Pengadilan Indopride</title>
     <style>
         :root {
-            --emerald: #004d40;
-            --gold: #bf953f;
-            --gold-light: #fcf6ba;
+            --dark-emerald: #003d33;
+            --gold: #c5a059;
+            --white: #ffffff;
         }
 
         body {
-            background-color: #333;
+            background-color: #1a1a1a;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 50px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        /* Instruksi */
-        .instruction {
-            color: white;
-            margin-bottom: 20px;
-            text-align: center;
-            background: rgba(0,0,0,0.5);
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 40px;
+            font-family: 'Georgia', serif;
         }
 
         /* Container Kartu */
         .card {
             width: 600px;
             height: 350px;
-            background: white;
-            border-radius: 15px;
+            background: var(--white);
+            border-radius: 12px;
             position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             overflow: hidden;
-            border: 3px solid var(--gold);
+            border: 1px solid var(--gold);
         }
 
-        /* Watermark Batik (Seluruh Kartu) */
-        .watermark-batik {
+        /* Motif Batik CSS (Tanpa Gambar Luar) */
+        .batik-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://www.transparenttextures.com/patterns/batik-thin.png');
-            opacity: 0.08;
-            pointer-events: none;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.05;
             z-index: 1;
+            background-image:  radial-gradient(var(--dark-emerald) 2px, transparent 2px), radial-gradient(var(--dark-emerald) 2px, transparent 2px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
         }
 
-        /* Sidebar Batik */
-        .side-bar {
+        /* Sidebar Hijau */
+        .sidebar {
             position: absolute;
-            left: 0;
-            top: 0;
-            width: 45px;
-            height: 100%;
-            background: var(--emerald);
+            left: 0; top: 0; width: 45px; height: 100%;
+            background: var(--dark-emerald);
+            z-index: 3;
             border-right: 2px solid var(--gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 2;
         }
 
-        .side-text {
+        .sidebar-text {
             transform: rotate(-90deg);
-            color: white;
-            font-weight: bold;
+            color: var(--gold);
             font-size: 11px;
-            letter-spacing: 2px;
+            font-weight: bold;
+            letter-spacing: 3px;
             white-space: nowrap;
         }
 
-        /* Header */
+        /* Header Area */
         .header {
             margin-left: 45px;
-            background: var(--emerald);
-            height: 85px;
+            background: var(--dark-emerald);
+            height: 90px;
             display: flex;
             align-items: center;
-            padding: 0 20px;
-            color: white;
+            padding: 0 25px;
             border-bottom: 4px solid var(--gold);
-            z-index: 2;
+            z-index: 4;
             position: relative;
         }
 
-        .logo-placeholder {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.2);
-            border: 1px dashed white;
-            margin-right: 15px;
+        .logo-box {
+            width: 65px;
+            height: 65px;
+            border: 1.5px solid var(--gold);
+            border-radius: 5px;
+            margin-right: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 9px;
+            background: rgba(255,255,255,0.1);
             cursor: pointer;
             overflow: hidden;
         }
 
-        .logo-placeholder img { width: 100%; height: 100%; object-fit: contain; }
+        .logo-box img { width: 90%; height: 90%; object-fit: contain; }
 
-        .header-text h1 { margin: 0; font-size: 18px; color: var(--gold-light); text-transform: uppercase; }
-        .header-text p { margin: 3px 0 0; font-size: 10px; opacity: 0.9; }
+        .header-title h1 { 
+            margin: 0; font-size: 20px; color: var(--gold); 
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .header-title p { 
+            margin: 4px 0 0; font-size: 10px; color: white; opacity: 0.8; 
+            font-family: Arial, sans-serif;
+        }
 
-        /* Content */
-        .main-content {
+        /* Content Area */
+        .main-body {
             margin-left: 45px;
             padding: 25px;
             display: flex;
-            z-index: 2;
+            z-index: 4;
             position: relative;
         }
 
-        .photo-container {
+        .photo-frame {
             width: 120px;
-            height: 155px;
-            border: 2px solid var(--gold);
-            background: #f0f0f0;
+            height: 160px;
+            border: 3px solid var(--gold);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+            background: #f9f9f9;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
             overflow: hidden;
         }
+        
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-        .photo-container img { width: 100%; height: 100%; object-fit: cover; }
-
-        .data-fields {
+        .info-table {
             margin-left: 25px;
             flex-grow: 1;
+            font-family: 'Arial', sans-serif;
         }
 
-        .data-fields table { width: 100%; border-collapse: collapse; }
-        .data-fields td { padding: 5px 0; font-size: 14px; }
-        .label { font-weight: bold; color: var(--emerald); width: 90px; }
-        .editable { border-bottom: 1px dashed #ccc; outline: none; }
-        .editable:focus { background: #fffde7; border-bottom: 1px solid var(--gold); }
+        .info-table table { width: 100%; border-collapse: collapse; }
+        .info-table td { padding: 6px 0; font-size: 14px; border-bottom: 1px solid #eee; }
+        
+        .label { font-weight: bold; color: var(--dark-emerald); width: 85px; font-size: 12px; }
+        .val { outline: none; transition: 0.3s; }
+        .val:focus { color: var(--gold); background: #fffde7; }
 
-        /* Tanda Tangan & Footer */
-        .footer-area {
+        /* Tanda Tangan Section */
+        .signature-section {
             position: absolute;
-            bottom: 20px;
-            right: 25px;
+            bottom: 25px;
+            right: 30px;
             text-align: center;
-            z-index: 2;
+            z-index: 5;
+            width: 180px;
         }
 
-        .ttd-box {
-            width: 120px;
-            height: 50px;
-            border: 1px dashed #ccc;
-            margin: 5px auto;
-            cursor: pointer;
+        .ttd-space {
+            height: 60px;
+            margin-bottom: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+        }
+        .ttd-space img { max-height: 100%; mix-blend-mode: multiply; }
+
+        .name-chief {
+            font-weight: bold;
+            text-decoration: underline;
+            font-size: 13px;
+            color: #000;
+            outline: none;
         }
 
-        .ttd-box img { max-width: 100%; max-height: 100%; }
-
-        .kta-label {
+        .kta-footer {
             position: absolute;
             bottom: 15px;
             left: 70px;
             font-weight: bold;
             color: var(--gold);
-            letter-spacing: 1px;
-            z-index: 2;
+            font-size: 15px;
+            text-transform: uppercase;
+            z-index: 5;
         }
 
-        /* Sembunyikan Input File */
         input[type="file"] { display: none; }
+        
+        .hint { color: #888; font-size: 10px; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-    <div class="instruction">
-        Klik pada <b>Teks</b> untuk mengedit data.<br>
-        Klik pada kotak <b>Foto/Logo/TTD</b> untuk mengganti gambar.
+    <div style="color: white; margin-bottom: 20px; text-align: center;">
+        <h2>E-Editor KTA Pengadilan Indopride</h2>
+        <p>Klik teks untuk ubah data | Klik kotak untuk ganti gambar</p>
     </div>
 
-    <div class="card" id="kta-card">
-        <div class="watermark-batik"></div>
-        <div class="side-bar">
-            <div class="side-text">PENGADILAN KOTA INDOPRIDE</div>
+    <div class="card" id="card">
+        <div class="batik-bg"></div>
+
+        <div class="sidebar">
+            <div class="sidebar-text">INTEGRITAS - KEADILAN - PROFESIONAL</div>
         </div>
 
         <div class="header">
-            <label for="logo-input" class="logo-placeholder" id="logo-display">
-                Klik Logo
+            <label for="input-logo" class="logo-box" id="display-logo">
+                <span style="color:var(--gold); font-size:9px;">LOGO</span>
             </label>
-            <input type="file" id="logo-input" accept="image/*" onchange="previewImage(this, 'logo-display')">
-            
-            <div class="header-text">
+            <input type="file" id="input-logo" accept="image/*" onchange="loadImg(event, 'display-logo')">
+
+            <div class="header-title">
                 <h1 contenteditable="true">PENGADILAN KOTA INDOPRIDE</h1>
                 <p contenteditable="true">Jl. Occupation Avenue Kota Indopride – Kode Pos 7239</p>
             </div>
         </div>
 
-        <div class="main-content">
-            <label for="photo-input" class="photo-container" id="photo-display">
-                Klik Ganti Foto
+        <div class="main-body">
+            <label for="input-photo" class="photo-frame" id="display-photo">
+                <span style="color:#ccc;">FOTO 3x4</span>
             </label>
-            <input type="file" id="photo-input" accept="image/*" onchange="previewImage(this, 'photo-display')">
+            <input type="file" id="input-photo" accept="image/*" onchange="loadImg(event, 'display-photo')">
 
-            <div class="data-fields">
+            <div class="info-table">
                 <table>
                     <tr>
                         <td class="label">NAMA</td>
-                        <td>: <span class="editable" contenteditable="true">BUDI SANTOSO, S.H.</span></td>
+                        <td class="val" contenteditable="true">BUDI SANTOSO, S.H.</td>
                     </tr>
                     <tr>
                         <td class="label">NIP</td>
-                        <td>: <span class="editable" contenteditable="true">19850101 201001 1 001</span></td>
+                        <td class="val" contenteditable="true">19850101 201001 1 001</td>
                     </tr>
                     <tr>
                         <td class="label">JABATAN</td>
-                        <td>: <span class="editable" contenteditable="true">Panitera Pengganti</span></td>
+                        <td class="val" contenteditable="true">Panitera Pengganti</td>
                     </tr>
                     <tr>
                         <td class="label">BERLAKU</td>
-                        <td>: <span class="editable" contenteditable="true">31 DESEMBER 2028</span></td>
+                        <td class="val" contenteditable="true">31 DESEMBER 2028</td>
                     </tr>
                 </table>
             </div>
         </div>
 
-        <div class="kta-label">KARTU TANDA ANGGOTA</div>
+        <div class="kta-footer">Kartu Tanda Anggota</div>
 
-        <div class="footer-area">
-            <div style="font-size: 11px;" contenteditable="true">Ketua Pengadilan,</div>
-            <label for="ttd-input" class="ttd-box" id="ttd-display">
-                Klik Upload TTD
+        <div class="signature-section">
+            <div style="font-size: 10px; color: #555;" contenteditable="true">Ketua Pengadilan,</div>
+            <label for="input-ttd" class="ttd-space" id="display-ttd">
+                <span style="color:#eee; font-size:10px;">Klik Upload TTD</span>
             </label>
-            <input type="file" id="ttd-input" accept="image/*" onchange="previewImage(this, 'ttd-display')">
-            <div style="font-weight: bold; text-decoration: underline; font-size: 12px;" contenteditable="true">H. ACHMAD SUDIRMAN, S.H., M.H.</div>
+            <input type="file" id="input-ttd" accept="image/*" onchange="loadImg(event, 'display-ttd')">
+            <div class="name-chief" contenteditable="true">H. ACHMAD SUDIRMAN, S.H., M.H.</div>
         </div>
     </div>
 
     <script>
-        function previewImage(input, displayId) {
-            const display = document.getElementById(displayId);
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    display.innerHTML = `<img src="${e.target.result}" alt="preview">`;
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
+        function loadImg(event, targetId) {
+            const output = document.getElementById(targetId);
+            output.innerHTML = `<img src="${URL.createObjectURL(event.target.files[0])}">`;
         }
     </script>
 
