@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>KTA Pengadilan Kota Indopride - Perfect Symmetry</title>
+    <title>KTA Pengadilan Kota Indopride - Final Version</title>
     <style>
         :root {
             --emerald: #004d40;
@@ -11,142 +11,95 @@
         }
 
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #1a1a1a;
-            margin: 0;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; background-color: #1a1a1a; margin: 0;
             font-family: 'Times New Roman', Times, serif;
         }
 
         .card {
-            width: 550px;
-            height: 330px;
-            background: #fff;
-            border-radius: 12px;
-            position: relative;
+            width: 550px; height: 330px; background: #fff;
+            border-radius: 12px; position: relative;
             box-shadow: 0 15px 35px rgba(0,0,0,0.8);
-            overflow: hidden;
-            border: 2px solid var(--border-gold);
-            display: flex;
-            flex-direction: column;
+            overflow: hidden; border: 2px solid var(--border-gold);
+            display: flex; flex-direction: column;
         }
 
-        /* Watermark */
+        /* Watermark Background */
         .watermark-center {
-            position: absolute;
-            top: 60%;
-            left: 55%;
-            transform: translate(-50%, -50%);
-            width: 150px;
-            height: 150px;
-            opacity: 0.06;
-            z-index: 1;
-            pointer-events: none;
+            position: absolute; top: 55%; left: 55%;
+            transform: translate(-50%, -50%); width: 150px; height: 150px;
+            opacity: 0.06; z-index: 1; pointer-events: none;
         }
         .watermark-center img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* Sidebar */
+        /* Sidebar Batik */
         .side-batik {
-            position: absolute;
-            left: 0; top: 0; width: 45px; height: 100%;
+            position: absolute; left: 0; top: 0; width: 45px; height: 100%;
             background-color: var(--emerald);
             background-image: radial-gradient(var(--border-gold) 0.5px, transparent 0.5px);
-            background-size: 8px 8px;
-            border-right: 3px solid var(--border-gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
+            background-size: 8px 8px; border-right: 3px solid var(--border-gold);
+            display: flex; align-items: center; justify-content: center; z-index: 10;
         }
         .side-text { transform: rotate(-90deg); color: #fff; white-space: nowrap; font-size: 11px; font-weight: bold; letter-spacing: 2px; }
 
-        /* Header Slim & Center */
+        /* Header Slim & Balanced */
         .header {
-            margin-left: 45px;
-            background: var(--emerald);
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            border-bottom: 3px solid var(--border-gold);
+            margin-left: 45px; background: var(--emerald); height: 70px;
+            display: grid; grid-template-columns: 70px 1fr 70px;
+            align-items: center; padding: 0 10px; border-bottom: 3px solid var(--border-gold);
             z-index: 5;
         }
-        .logo-header { width: 45px; height: 45px; object-fit: contain; }
-        .header-text { text-align: center; flex-grow: 1; }
+        .logo-header { width: 45px; height: 45px; object-fit: contain; justify-self: center; }
+        .header-text { text-align: center; }
         .header-text h1 { margin: 0; font-size: 16px; background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
-        .header-text p { margin: 2px 0 0; font-size: 8px; color: white; }
+        .header-text p { margin: 2px 0 0; font-size: 8.5px; color: white; }
 
-        /* Body Container - Kunci Simetrisitas */
-        .main-body {
-            margin-left: 45px;
-            flex-grow: 1;
-            display: flex;
-            align-items: center; /* Menjaga semua konten sejajar di tengah secara vertikal */
-            padding: 0 20px;
-            position: relative;
-            z-index: 5;
+        /* Content Area */
+        .main-content {
+            margin-left: 45px; flex-grow: 1; display: grid;
+            grid-template-columns: 140px 1fr; /* Kolom foto dan kolom data/ttd */
+            padding: 15px; position: relative; z-index: 5;
         }
 
-        .left-content {
-            display: flex;
-            gap: 15px;
-            align-items: flex-start;
-            flex: 1;
-        }
-
+        /* Area Foto */
+        .photo-box { display: flex; justify-content: center; align-items: flex-start; }
         .photo-area {
-            width: 100px;
-            height: 130px;
-            border: 2px solid var(--border-gold);
-            background: #eee;
-            overflow: hidden;
-            flex-shrink: 0;
-            cursor: pointer;
+            width: 100px; height: 130px; border: 2px solid var(--border-gold);
+            background: #eee; cursor: pointer; overflow: hidden;
         }
         .photo-area img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Data Pegawai - Spasi Sangat Rapat */
-        .details-grid {
-            display: grid;
-            grid-template-columns: auto auto 1fr;
-            column-gap: 5px;
-            row-gap: 3px; /* Spasi vertikal antar baris sangat rapat */
-            font-size: 13px;
+        /* Area Data dan TTD */
+        .info-ttd-container {
+            display: flex; flex-direction: column; justify-content: space-between;
+            padding-left: 10px;
         }
-        .label { font-weight: bold; color: var(--emerald); min-width: 60px; }
 
-        /* Sisi Kanan (Tanda Tangan) */
-        .right-content {
-            width: 180px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            margin-top: 40px; /* Menyesuaikan posisi agar sejajar dengan baris bawah data */
+        /* Grid Data Rapat */
+        .details-grid {
+            display: grid; grid-template-columns: 65px 10px 1fr;
+            row-gap: 2px; font-size: 13.5px; align-content: start;
+        }
+        .label { font-weight: bold; color: var(--emerald); }
+
+        /* Area Tanda Tangan */
+        .ttd-section {
+            align-self: flex-end; width: 180px; text-align: center;
+            display: flex; flex-direction: column; align-items: center;
+            margin-bottom: 5px;
         }
         .ttd-img { height: 45px; margin: 2px 0; mix-blend-mode: multiply; }
-        .sign-line { 
-            width: 100%; 
-            border-top: 1.5px solid #000; 
-            font-weight: bold; 
-            font-size: 10px; 
-            padding-top: 3px; 
+        .sign-line {
+            width: 100%; border-top: 1.5px solid #000;
+            font-weight: bold; font-size: 10px; padding-top: 2px;
             text-transform: uppercase;
         }
 
         /* Footer */
         .footer-bar {
-            margin-left: 45px;
-            height: 35px;
-            background: #f4f4f4;
-            display: flex;
-            align-items: center;
-            padding: 0 15px;
-            justify-content: space-between;
-            border-top: 1px solid #ddd;
+            margin-left: 45px; height: 35px; background: #f4f4f4;
+            display: flex; align-items: center; padding: 0 15px;
+            justify-content: space-between; border-top: 1px solid #ddd;
             z-index: 5;
         }
         .kta-text { color: var(--emerald); font-weight: bold; font-size: 11px; }
@@ -159,7 +112,7 @@
 
     <div class="card">
         <div class="watermark-center">
-            <img src="logo.png" alt="">
+            <img src="logo.png" alt="" onerror="this.style.display='none'">
         </div>
 
         <div class="side-batik">
@@ -167,33 +120,35 @@
         </div>
 
         <div class="header">
-            <img src="logo1.png" alt="L" class="logo-header">
+            <img src="logo.png" alt="L" class="logo-header" onerror="this.style.opacity='0'">
             <div class="header-text">
                 <h1 contenteditable="true">PENGADILAN KOTA INDOPRIDE</h1>
                 <p contenteditable="true">Jl. Occupation Avenue Kota Indopride – Kode Pos 7239</p>
             </div>
-            <img src="logo2.png" alt="R" class="logo-header">
+            <img src="logo_kanan.png" alt="R" class="logo-header" onerror="this.style.opacity='0'">
         </div>
 
-        <div class="main-body">
-            <div class="left-content">
+        <div class="main-content">
+            <div class="photo-box">
                 <label for="p-input" class="photo-area" id="p-view">
                     <div style="text-align:center; padding-top:50px; color:#999; font-size:8px;">Klik Foto</div>
                 </label>
                 <input type="file" id="p-input" hidden onchange="preview(event)">
+            </div>
 
+            <div class="info-ttd-container">
                 <div class="details-grid">
                     <div class="label">NAMA</div> <div>:</div> <div contenteditable="true">BUDI SANTOSO, S.H.</div>
                     <div class="label">NIP</div> <div>:</div> <div contenteditable="true">19850101 201001 1 001</div>
                     <div class="label">JABATAN</div> <div>:</div> <div contenteditable="true">Panitera Pengganti</div>
                     <div class="label">BERLAKU</div> <div>:</div> <div contenteditable="true">31 DESEMBER 2028</div>
                 </div>
-            </div>
 
-            <div class="right-content">
-                <div style="font-size: 10px;">Ketua Pengadilan,</div>
-                <img src="ttd.png" alt=" " class="ttd-img" onerror="this.style.opacity='0'">
-                <div class="sign-line" contenteditable="true">KOWE GORILA</div>
+                <div class="ttd-section">
+                    <div style="font-size: 9.5px;">Ketua Pengadilan,</div>
+                    <img src="ttd.png" alt=" " class="ttd-img" onerror="this.style.opacity='0'">
+                    <div class="sign-line" contenteditable="true">H. ACHMAD SUDIRMAN, S.H., M.H.</div>
+                </div>
             </div>
         </div>
 
