@@ -2,14 +2,18 @@
 <html lang="id">
 
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
     <meta charset="UTF-8">
-    <title>KTA Pengadilan Kota Indopride</title>
+    <title>KTA Pengadilan Kota Indopride - Batik Border Version</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+
     <style>
         :root {
             --emerald: #004d40;
             --gold-grad: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             --border-gold: #bf953f;
+            /* URL Gambar Pola dari Freepik */
+            --batik-url: url('https://img.freepik.com/free-vector/shiny-gradient-color-irregular-organic-shape-seamless-pattern_1017-45136.jpg');
         }
 
         body {
@@ -23,18 +27,39 @@
             font-family: 'Times New Roman', Times, serif;
         }
 
+        /* --- BINGKAI LUAR MENGGUNAKAN BATIK --- */
+        .card-frame {
+            width: 566px;
+            /* Lebih lebar dari card (550px + 2x8px border) */
+            height: 346px;
+            /* Lebih tinggi dari card (330px + 2x8px border) */
+            padding: 8px;
+            /* Ketebalan bingkai batik */
+            background-image: var(--batik-url);
+            background-size: cover;
+            background-position: center;
+            border-radius: 28px;
+            /* Sudut lebih bulat agar simetris dengan card */
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
         .card {
             width: 550px;
             height: 330px;
             background: #fff;
-            border-radius: 12px;
+            border-radius: 20px;
+            /* Sudut membulat elegan */
             position: relative;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
             overflow: hidden;
-            border: 2px solid var(--border-gold);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            /* Garis halus pembatas kartu inner */
+            z-index: 1;
         }
 
-        /* --- Fitur Watermark --- */
         .watermark {
             position: absolute;
             top: 55%;
@@ -43,7 +68,6 @@
             width: 180px;
             height: 180px;
             opacity: 0.08;
-            /* Sangat transparan */
             z-index: 0;
             pointer-events: none;
         }
@@ -54,7 +78,6 @@
             object-fit: contain;
         }
 
-        /* Sidebar Batik */
         .side-batik {
             position: absolute;
             left: 0;
@@ -80,7 +103,6 @@
             letter-spacing: 2px;
         }
 
-        /* --- Header dengan Logo Kiri & Kanan --- */
         .header {
             margin-left: 45px;
             background: var(--emerald);
@@ -120,7 +142,6 @@
             color: white;
         }
 
-        /* Konten Utama */
         .main-container {
             margin-left: 45px;
             padding: 20px;
@@ -139,6 +160,7 @@
             overflow: hidden;
             flex-shrink: 0;
             box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
         }
 
         .photo-area img {
@@ -147,7 +169,6 @@
             object-fit: cover;
         }
 
-        /* Detail Data */
         .details-grid {
             flex-grow: 1;
             display: grid;
@@ -162,14 +183,12 @@
             color: var(--emerald);
         }
 
-        /* --- Font Khusus Isian Nama dll --- */
         .value {
-            font-family: 'Times New Roman', Courier, monospace;
+            font-family: 'Roboto', Courier, monospace;
             font-weight: bold;
             color: #333;
         }
 
-        /* Bagian Bawah (TTD) */
         .bottom-section {
             position: absolute;
             bottom: 35px;
@@ -197,7 +216,6 @@
             text-transform: uppercase;
         }
 
-        /* Footer Barcode */
         .footer-bar {
             position: absolute;
             bottom: 0;
@@ -218,102 +236,77 @@
             font-size: 13px;
         }
 
-        .barcode-font {
-            font-family: Arial;
-            font-weight: bold;
-            font-size: 10px;
-            letter-spacing: 2px;
-        }
-
-        [contenteditable="true"]:focus {
-            outline: none;
-            background: #fffde7;
+        #barcode {
+            height: 30px;
         }
     </style>
 </head>
 
 <body>
 
-    <div style="color: #888; font-size: 12px; margin-bottom: 10px; font-family: Arial;">
-        *Klik teks untuk edit | Klik kotak foto untuk ganti foto pegawai
-    </div>
-
-    <div class="card">
-        <div class="watermark">
-            <img src="logo.png" alt="" onerror="this.style.display='none'">
-        </div>
-
-        <div class="side-batik">
-            <div class="side-text">INTEGRITAS & KEADILAN</div>
-        </div>
-
-        <div class="header">
-            <img src="logo2.png" alt="Logo L" class="logo-img" onerror="this.style.opacity='0'">
-
-            <div class="header-text">
-                <h1 contenteditable="true">PENGADILAN KOTA INDOPRIDE</h1>
-                <p contenteditable="true">Jl. Occupation Avenue Kota Indopride – Kode Pos 7239</p>
+    <div class="card-frame">
+        <div class="card">
+            <div class="watermark">
+                <img src="logo.png" onerror="this.style.display='none'">
             </div>
 
-            <img src="logo.png" alt="Logo R" class="logo-img" onerror="this.style.opacity='0'">
-        </div>
-
-        <div class="main-container">
-            <label for="p-input" class="photo-area" id="p-view">
-                <div style="text-align:center; padding-top:50px; color:#999; font-size:10px;">Klik Foto</div>
-            </label>
-            <input type="file" id="p-input" hidden onchange="preview(event)">
-
-            <div class="details-grid">
-                <div class="label">NAMA</div>
-                <div>:</div>
-                <div class="value" contenteditable="true">TOKOH PROTAGONIS</div>
-                <div class="label">NIP</div>
-                <div>:</div>
-                <div class="value" contenteditable="true">19850101 201001 1 001</div>
-                <div class="label">JABATAN</div>
-                <div>:</div>
-                <div class="value" contenteditable="true">Panitera Pengganti</div>
-                <div class="label">BERLAKU</div>
-                <div>:</div>
-                <div class="value" contenteditable="true">31 DESEMBER 2028</div>
+            <div class="side-batik">
+                <div class="side-text">INTEGRITAS & KEADILAN</div>
             </div>
-        </div>
 
-        <div class="bottom-section">
-            <div style="font-size: 10px;">Ketua Pengadilan,</div>
-            <img src="ttd.png" alt=" " class="ttd-img" onerror="this.style.opacity='0'">
-            <div class="sign-line" contenteditable="true">KOWE GORILA</div>
-        </div>
+            <div class="header">
+                <img src="logo2.png" class="logo-img" onerror="this.style.opacity='0'">
+                <div class="header-text">
+                    <h1>PENGADILAN KOTA INDOPRIDE</h1>
+                    <p>Jl. Occupation Avenue Kota Indopride – Kode Pos 7239</p>
+                </div>
+                <img src="logo.png" class="logo-img" onerror="this.style.opacity='0'">
+            </div>
 
-      <div class="footer-bar">
-            <div class="kta-text">KARTU TANDA ANGGOTA</div>
-            <svg id="barcode"></svg>
+            <div class="main-container">
+                <div class="photo-area">
+                    <div style="text-align:center; padding-top:60px; color:#999; font-size:10px;">FOTO</div>
+                </div>
+
+                <div class="details-grid">
+                    <div class="label">NAMA</div>
+                    <div>:</div>
+                    <div class="value">TOKOH PROTAGONIS</div>
+                    <div class="label">NIP</div>
+                    <div>:</div>
+                    <div class="value">P.IDP.2026.00002</div>
+                    <div class="label">JABATAN</div>
+                    <div>:</div>
+                    <div class="value">TIM KEJAKSAAN</div>
+                    <div class="label">BERLAKU</div>
+                    <div>:</div>
+                    <div class="value">31 DESEMBER 2028</div>
+                </div>
+            </div>
+
+            <div class="bottom-section">
+                <div style="font-size:10px;">Ketua Pengadilan,</div>
+                <img src="ttd.png" class="ttd-img" onerror="this.style.opacity='0'">
+                <div class="sign-line">KOWE GORILA</div>
+            </div>
+
+            <div class="footer-bar">
+                <div class="kta-text">KARTU TANDA ANGGOTA</div>
+                <svg id="barcode"></svg>
+            </div>
         </div>
     </div>
 
     <script>
         JsBarcode("#barcode", "INDOPRIDECOURT.XYZ", {
             format: "CODE128",
-            width: 1.1,      // ⬅️ makin kecil = makin pendek
-            height: 26,      // ⬅️ tinggi tetap proporsional
+            width: 1.1,
+            height: 26,
             displayValue: false,
             margin: 0
         });
     </script>
 
-    <script>
-        function preview(e) {
-            const reader = new FileReader();
-            reader.onload = function () {
-                document.getElementById('p-view').innerHTML = `<img src="${reader.result}">`;
-            }
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    </script>
 </body>
 
 </html>
-
-
-
