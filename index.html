@@ -167,6 +167,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center top;
         }
 
         .details-grid {
@@ -314,6 +315,19 @@
             displayValue: false,
             margin: 0
         });
+    </script>
+    <script>
+        function preview(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function () {
+                const photoBox = document.getElementById('p-view');
+                photoBox.innerHTML = `<img src="${reader.result}" alt="Foto Pegawai">`;
+            };
+            reader.readAsDataURL(file);
+        }
     </script>
 
 </body>
