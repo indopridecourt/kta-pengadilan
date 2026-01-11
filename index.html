@@ -2,14 +2,12 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KTA Pengadilan Kota Indopride</title>
     <style>
         :root {
-            --primary-green: #004d40;
-            --gold: #d4af37;
-            --white: #ffffff;
-            --light-gray: #f4f4f4;
+            --emerald: #004d40;
+            --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --dark-green: #002d26;
         }
 
         body {
@@ -17,192 +15,195 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #2c3e50;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
             margin: 0;
+            font-family: 'Times New Roman', serif;
         }
 
-        /* Container Kartu */
-        .id-card {
-            width: 500px;
-            height: 300px;
-            background-color: var(--white);
-            border-radius: 15px;
+        /* Kartu Utama */
+        .card {
+            width: 550px;
+            height: 330px;
+            background: #fff;
+            border-radius: 12px;
             position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            border: 5px solid var(--primary-green);
+            border: 2px solid #bf953f;
         }
 
-        /* Aksen Batik di Samping */
-        .batik-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://www.transparenttextures.com/patterns/batik-thin.png'); /* Pattern batik subtle */
-            opacity: 0.1;
-            pointer-events: none;
-        }
-
-        .side-border {
+        /* Border Batik Samping (CSS Pattern) */
+        .side-batik {
             position: absolute;
             left: 0;
             top: 0;
-            width: 40px;
+            width: 50px;
             height: 100%;
-            background-color: var(--primary-green);
+            background-color: var(--emerald);
+            background-image:  radial-gradient(#bf953f 0.5px, transparent 0.5px);
+            background-size: 10px 10px; /* Efek titik-titik batik */
+            border-right: 3px solid #bf953f;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Header */
+        .side-text {
+            transform: rotate(-90deg);
+            color: #fff;
+            white-space: nowrap;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* Bagian Atas / Header */
         .header {
-            background-color: var(--primary-green);
-            color: var(--gold);
-            padding: 10px 10px 10px 50px;
-            text-align: center;
-            border-bottom: 3px solid var(--gold);
+            background: var(--emerald);
+            height: 80px;
+            margin-left: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            border-bottom: 4px solid #bf953f;
         }
 
         .header h1 {
             margin: 0;
-            font-size: 18px;
-            letter-spacing: 1px;
+            font-size: 20px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-transform: uppercase;
         }
 
         .header p {
-            margin: 2px 0 0;
-            font-size: 9px;
-            color: var(--white);
+            margin: 5px 0 0;
+            font-size: 10px;
+            font-family: Arial, sans-serif;
         }
 
-        /* Konten Utama */
-        .card-body {
+        /* Konten */
+        .content {
+            margin-left: 50px;
+            padding: 20px;
             display: flex;
-            padding: 20px 20px 20px 60px;
         }
 
-        .photo-space {
-            width: 110px;
-            height: 140px;
-            border: 2px solid var(--gold);
-            background-color: #ddd;
+        .photo-box {
+            width: 120px;
+            height: 160px;
+            border: 3px solid #bf953f;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+            background: #f0f0f0;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            position: relative;
+            font-style: italic;
+            color: #888;
         }
 
-        .photo-space img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .info {
+        .details {
             margin-left: 20px;
+            font-family: Arial, sans-serif;
             flex-grow: 1;
         }
 
-        .info table {
+        .details table {
+            width: 100%;
             font-size: 13px;
             border-collapse: collapse;
         }
 
-        .info td {
-            padding: 3px 0;
-            vertical-align: top;
+        .details td { padding: 4px 0; }
+        .label { font-weight: bold; color: var(--emerald); width: 80px; }
+
+        /* Footer */
+        .kta-footer {
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            right: 0;
+            height: 40px;
+            background: #f4f4f4;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            justify-content: space-between;
+            border-top: 1px solid #ddd;
         }
 
-        .label {
+        .stamp-area {
+            position: absolute;
+            bottom: 50px;
+            right: 30px;
+            text-align: center;
+        }
+
+        .signature {
+            margin-top: 40px;
             font-weight: bold;
-            width: 80px;
-            color: var(--primary-green);
+            border-top: 1px solid #000;
+            font-size: 12px;
         }
 
-        /* Footer / Watermark */
-        .footer {
-            position: absolute;
-            bottom: 15px;
-            right: 20px;
-            text-align: right;
-        }
-
-        .kta-label {
-            position: absolute;
-            bottom: 10px;
-            left: 60px;
+        .kta-title {
+            color: var(--emerald);
             font-weight: bold;
             font-size: 14px;
-            color: var(--gold);
-            text-transform: uppercase;
-        }
-
-        .barcode {
-            width: 100px;
-            height: 30px;
-            background: linear-gradient(90deg, #000 5%, transparent 5%, transparent 10%, #000 10%, #000 15%, transparent 15%, transparent 25%, #000 25%, #000 35%, transparent 35%, transparent 40%, #000 40%, #000 55%, transparent 55%, transparent 60%, #000 60%, #000 70%, transparent 70%, transparent 80%, #000 80%);
-            margin-top: 5px;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
-    <div class="id-card">
-        <div class="batik-overlay"></div>
-        <div class="side-border">
-            <div style="transform: rotate(-90deg); color: white; font-size: 10px; white-space: nowrap; font-weight: bold;">
-                PENGADILAN NEGERI INDOPRIDE
-            </div>
+    <div class="card">
+        <div class="side-batik">
+            <div class="side-text">INTEGRITAS & KEADILAN</div>
         </div>
 
         <div class="header">
-            <h1>Pengadilan Kota Indopride</h1>
+            <h1>PENGADILAN KOTA INDOPRIDE</h1>
             <p>Jl. Occupation Avenue Kota Indopride – Kode Pos 7239</p>
         </div>
 
-        <div class="card-body">
-            <div class="photo-space">
-                <img src="https://via.placeholder.com/110x140?text=FOTO" alt="Foto Pegawai">
+        <div class="content">
+            <div class="photo-box">
+                FOTO 3x4
             </div>
-
-            <div class="info">
+            
+            <div class="details">
                 <table>
                     <tr>
                         <td class="label">NAMA</td>
-                        <td>:</td>
-                        <td style="text-transform: uppercase; font-weight: bold;">BUDI SANTOSO, S.H.</td>
+                        <td style="font-weight: bold;">: BUDI SANTOSO, S.H.</td>
                     </tr>
                     <tr>
                         <td class="label">NIP</td>
-                        <td>:</td>
-                        <td>19850101 201001 1 001</td>
+                        <td>: 19850101 201001 1 001</td>
                     </tr>
                     <tr>
                         <td class="label">JABATAN</td>
-                        <td>:</td>
-                        <td>Panitera Pengganti</td>
+                        <td>: Panitera Pengganti</td>
                     </tr>
                     <tr>
                         <td class="label">BERLAKU</td>
-                        <td>:</td>
-                        <td>31 DESEMBER 2028</td>
+                        <td>: 31 DESEMBER 2028</td>
                     </tr>
                 </table>
             </div>
         </div>
 
-        <div class="kta-label">Kartu Tanda Anggota</div>
+        <div class="stamp-area">
+            <p style="font-size: 10px; margin: 0;">Ketua Pengadilan,</p>
+            <div class="signature">H. ACHMAD SUDIRMAN, S.H., M.H.</div>
+        </div>
 
-        <div class="footer">
-            <div style="font-size: 10px; margin-bottom: 25px;">Kepala Pengadilan,</div>
-            <div style="font-weight: bold; text-decoration: underline; font-size: 11px;">H. ACHMAD SUDIRMAN, S.H., M.H.</div>
-            <div class="barcode"></div>
+        <div class="kta-footer">
+            <div class="kta-title">KARTU TANDA ANGGOTA</div>
+            <div style="font-family: 'Libre Barcode 39', cursive; font-size: 20px;">|||| || | ||| || ||</div>
         </div>
     </div>
 
