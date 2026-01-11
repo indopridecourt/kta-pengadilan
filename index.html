@@ -245,6 +245,30 @@
             outline: none;
             background: #fffde7;
         }
+        @media print {
+    @page {
+        size: auto;
+        margin: 0;
+    }
+
+    body {
+        background: none !important;
+        margin: 0;
+        padding: 0;
+        display: block;
+    }
+
+    body > div:first-child {
+        display: none; /* teks petunjuk */
+    }
+
+    .card-frame {
+        box-shadow: none !important;
+        margin: 0 auto;
+        page-break-after: always;
+    }
+}
+
     </style>
 </head>
 
@@ -333,3 +357,4 @@
 </body>
 
 </html>
+
