@@ -1,282 +1,264 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>KTA Pengadilan Kota Indopride</title>
+    <meta charset="UTF-8">
+    <title>Editor KTA Pengadilan Kota Indopride</title>
+    <style>
+        :root {
+            --emerald: #004d40;
+            --gold: #bf953f;
+            --gold-light: #fcf6ba;
+        }
 
-<style>
-:root {
-    --emerald:#004d40;
-    --gold:#bf953f;
-}
+        body {
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-body{
-    background:#1a1a1a;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    margin:0;
-    font-family:Arial, sans-serif;
-}
+        /* Instruksi */
+        .instruction {
+            color: white;
+            margin-bottom: 20px;
+            text-align: center;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
 
-.card{
-    width:550px;
-    height:330px;
-    background:#fff;
-    border-radius:12px;
-    position:relative;
-    box-shadow:0 15px 35px rgba(0,0,0,.8);
-    overflow:hidden;
-    border:2px solid var(--gold);
-}
+        /* Container Kartu */
+        .card {
+            width: 600px;
+            height: 350px;
+            background: white;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            overflow: hidden;
+            border: 3px solid var(--gold);
+        }
 
-/* WATERMARK */
-.watermark{
-    position:absolute;
-    inset:0;
-    background:url("watermark.png") center/220px no-repeat;
-    opacity:.05;
-    pointer-events:none;
-}
+        /* Watermark Batik (Seluruh Kartu) */
+        .watermark-batik {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/batik-thin.png');
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-/* SIDE BATIK */
-.side-batik{
-    position:absolute;
-    left:0;top:0;
-    width:50px;height:100%;
-    background:var(--emerald);
-    border-right:3px solid var(--gold);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-.side-text{
-    transform:rotate(-90deg);
-    color:#fff;
-    font-size:12px;
-    letter-spacing:2px;
-    font-weight:bold;
-}
+        /* Sidebar Batik */
+        .side-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 45px;
+            height: 100%;
+            background: var(--emerald);
+            border-right: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
 
-/* HEADER */
-.header{
-    margin-left:50px;
-    height:80px;
-    background:var(--emerald);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 15px;
-    border-bottom:4px solid var(--gold);
-}
-.header img{height:45px;}
-.header-center{text-align:center;flex:1;}
-.header h1{
-    margin:0;
-    font-size:18px;
-    letter-spacing:1px;
-}
-.header p{
-    margin:4px 0 0;
-    font-size:10px;
-}
+        .side-text {
+            transform: rotate(-90deg);
+            color: white;
+            font-weight: bold;
+            font-size: 11px;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
 
-/* CONTENT */
-.content{
-    margin-left:50px;
-    padding:15px;
-    display:flex;
-    position:relative;
-    z-index:1;
-}
+        /* Header */
+        .header {
+            margin-left: 45px;
+            background: var(--emerald);
+            height: 85px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            border-bottom: 4px solid var(--gold);
+            z-index: 2;
+            position: relative;
+        }
 
-.photo-box{
-    width:120px;height:160px;
-    border:3px solid var(--gold);
-    position:relative;
-    background:#eee;
-}
-.photo-box img{
-    width:100%;height:100%;
-    object-fit:cover;
-}
-.photo-box input{
-    position:absolute;
-    inset:0;
-    opacity:0;
-    cursor:pointer;
-}
+        .logo-placeholder {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.2);
+            border: 1px dashed white;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            cursor: pointer;
+            overflow: hidden;
+        }
 
-.details{
-    margin-left:15px;
-    flex:1;
-}
-.details table{
-    width:100%;
-    font-size:13px;
-}
-.label{
-    width:70px;
-    font-weight:bold;
-    color:var(--emerald);
-}
-.value{
-    font-weight:bold;
-}
+        .logo-placeholder img { width: 100%; height: 100%; object-fit: contain; }
 
-/* INPUT MODE */
-.edit .input{display:inline;}
-.edit .value{display:none;}
-.input{
-    display:none;
-    width:100%;
-    font-size:13px;
-}
+        .header-text h1 { margin: 0; font-size: 18px; color: var(--gold-light); text-transform: uppercase; }
+        .header-text p { margin: 3px 0 0; font-size: 10px; opacity: 0.9; }
 
-/* SIGNATURE */
-.stamp-area{
-    position:absolute;
-    bottom:55px;
-    right:25px;
-    text-align:left;
-}
-.signature{
-    margin-top:35px;
-    border-top:1px solid #000;
-    font-weight:bold;
-    font-size:12px;
-    width:140px;
-}
+        /* Content */
+        .main-content {
+            margin-left: 45px;
+            padding: 25px;
+            display: flex;
+            z-index: 2;
+            position: relative;
+        }
 
-/* FOOTER */
-.kta-footer{
-    position:absolute;
-    bottom:0;left:50px;right:0;
-    height:40px;
-    background:#f4f4f4;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 15px;
-    font-weight:bold;
-    color:var(--emerald);
-}
+        .photo-container {
+            width: 120px;
+            height: 155px;
+            border: 2px solid var(--gold);
+            background: #f0f0f0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-/* BUTTON */
-#editBtn{
-    position:absolute;
-    top:10px;
-    right:10px;
-    font-size:11px;
-    padding:4px 8px;
-}
-</style>
+        .photo-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        .data-fields {
+            margin-left: 25px;
+            flex-grow: 1;
+        }
+
+        .data-fields table { width: 100%; border-collapse: collapse; }
+        .data-fields td { padding: 5px 0; font-size: 14px; }
+        .label { font-weight: bold; color: var(--emerald); width: 90px; }
+        .editable { border-bottom: 1px dashed #ccc; outline: none; }
+        .editable:focus { background: #fffde7; border-bottom: 1px solid var(--gold); }
+
+        /* Tanda Tangan & Footer */
+        .footer-area {
+            position: absolute;
+            bottom: 20px;
+            right: 25px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .ttd-box {
+            width: 120px;
+            height: 50px;
+            border: 1px dashed #ccc;
+            margin: 5px auto;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ttd-box img { max-width: 100%; max-height: 100%; }
+
+        .kta-label {
+            position: absolute;
+            bottom: 15px;
+            left: 70px;
+            font-weight: bold;
+            color: var(--gold);
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        /* Sembunyikan Input File */
+        input[type="file"] { display: none; }
+    </style>
 </head>
-
 <body>
 
-<div class="card" id="card">
-<div class="watermark"></div>
-
-<button id="editBtn">EDIT</button>
-
-<div class="side-batik">
-    <div class="side-text">INTEGRITAS & KEADILAN</div>
-</div>
-
-<div class="header">
-    <img src="logo-kiri.png">
-    <div class="header-center">
-        <h1>PENGADILAN KOTA INDOPRIDE</h1>
-        <p>Jl. Occupation Avenue Kota Indopride – Kode Pos 7239</p>
-    </div>
-    <img src="logo-kanan.png">
-</div>
-
-<div class="content">
-    <div class="photo-box">
-        <img id="photo" src="foto-default.png">
-        <input type="file" id="photoInput" accept="image/*">
+    <div class="instruction">
+        Klik pada <b>Teks</b> untuk mengedit data.<br>
+        Klik pada kotak <b>Foto/Logo/TTD</b> untuk mengganti gambar.
     </div>
 
-    <div class="details">
-        <table>
-            <tr>
-                <td class="label">NAMA</td>
-                <td>
-                    <span class="value" id="namaView">BUDI SANTOSO, S.H.</span>
-                    <input class="input" id="namaInput">
-                </td>
-            </tr>
-            <tr>
-                <td class="label">NIP</td>
-                <td>
-                    <span class="value" id="nipView">19850101 201001 1 001</span>
-                    <input class="input" id="nipInput">
-                </td>
-            </tr>
-            <tr>
-                <td class="label">JABATAN</td>
-                <td>
-                    <span class="value" id="jabatanView">Panitera Pengganti</span>
-                    <input class="input" id="jabatanInput">
-                </td>
-            </tr>
-            <tr>
-                <td class="label">BERLAKU</td>
-                <td>
-                    <span class="value" id="validView">31 DESEMBER 2028</span>
-                    <input class="input" id="validInput" type="date">
-                </td>
-            </tr>
-        </table>
+    <div class="card" id="kta-card">
+        <div class="watermark-batik"></div>
+        <div class="side-bar">
+            <div class="side-text">PENGADILAN KOTA INDOPRIDE</div>
+        </div>
+
+        <div class="header">
+            <label for="logo-input" class="logo-placeholder" id="logo-display">
+                Klik Logo
+            </label>
+            <input type="file" id="logo-input" accept="image/*" onchange="previewImage(this, 'logo-display')">
+            
+            <div class="header-text">
+                <h1 contenteditable="true">PENGADILAN KOTA INDOPRIDE</h1>
+                <p contenteditable="true">Jl. Occupation Avenue Kota Indopride – Kode Pos 7239</p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <label for="photo-input" class="photo-container" id="photo-display">
+                Klik Ganti Foto
+            </label>
+            <input type="file" id="photo-input" accept="image/*" onchange="previewImage(this, 'photo-display')">
+
+            <div class="data-fields">
+                <table>
+                    <tr>
+                        <td class="label">NAMA</td>
+                        <td>: <span class="editable" contenteditable="true">BUDI SANTOSO, S.H.</span></td>
+                    </tr>
+                    <tr>
+                        <td class="label">NIP</td>
+                        <td>: <span class="editable" contenteditable="true">19850101 201001 1 001</span></td>
+                    </tr>
+                    <tr>
+                        <td class="label">JABATAN</td>
+                        <td>: <span class="editable" contenteditable="true">Panitera Pengganti</span></td>
+                    </tr>
+                    <tr>
+                        <td class="label">BERLAKU</td>
+                        <td>: <span class="editable" contenteditable="true">31 DESEMBER 2028</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="kta-label">KARTU TANDA ANGGOTA</div>
+
+        <div class="footer-area">
+            <div style="font-size: 11px;" contenteditable="true">Ketua Pengadilan,</div>
+            <label for="ttd-input" class="ttd-box" id="ttd-display">
+                Klik Upload TTD
+            </label>
+            <input type="file" id="ttd-input" accept="image/*" onchange="previewImage(this, 'ttd-display')">
+            <div style="font-weight: bold; text-decoration: underline; font-size: 12px;" contenteditable="true">H. ACHMAD SUDIRMAN, S.H., M.H.</div>
+        </div>
     </div>
-</div>
 
-<div class="stamp-area">
-    <div style="font-size:10px">Ketua Pengadilan,</div>
-    <div class="signature">KOWE GORILA</div>
-</div>
-
-<div class="kta-footer">
-    <div>KARTU TANDA ANGGOTA</div>
-    <div>IDP-2026-001</div>
-</div>
-
-</div>
-
-<script>
-const card=document.getElementById("card");
-document.getElementById("editBtn").onclick=()=>{
-    card.classList.toggle("edit");
-};
-
-/* BIND INPUT */
-function bind(input,view){
-    const i=document.getElementById(input);
-    const v=document.getElementById(view);
-    i.value=v.innerText;
-    i.oninput=()=>v.innerText=i.value;
-}
-bind("namaInput","namaView");
-bind("nipInput","nipView");
-bind("jabatanInput","jabatanView");
-
-document.getElementById("validInput").onchange=e=>{
-    document.getElementById("validView").innerText=
-        new Date(e.target.value).toLocaleDateString("id-ID",
-        {day:"2-digit",month:"long",year:"numeric"});
-};
-
-/* PHOTO */
-document.getElementById("photoInput").onchange=e=>{
-    const r=new FileReader();
-    r.onload=()=>document.getElementById("photo").src=r.result;
-    r.readAsDataURL(e.target.files[0]);
-};
-</script>
+    <script>
+        function previewImage(input, displayId) {
+            const display = document.getElementById(displayId);
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    display.innerHTML = `<img src="${e.target.result}" alt="preview">`;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 
 </body>
 </html>
