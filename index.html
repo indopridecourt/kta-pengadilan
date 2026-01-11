@@ -12,8 +12,6 @@
             --emerald: #004d40;
             --gold-grad: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             --border-gold: #bf953f;
-            /* URL Gambar Pola dari Freepik */
-            --batik-url: url('https://img.freepik.com/premium-vector/black-gold-with-indonesian-batik-patern-background_565542-331.jpg');
         }
 
         body {
@@ -25,26 +23,6 @@
             background-color: #FF1493;
             margin: 0;
             font-family: 'Times New Roman', Times, serif;
-        }
-
-        /* --- BINGKAI LUAR MENGGUNAKAN BATIK --- */
-        .card-frame {
-            width: 566px;
-            /* Lebih lebar dari card (550px + 2x8px border) */
-            height: 346px;
-            /* Lebih tinggi dari card (330px + 2x8px border) */
-            padding: 5px;
-            /* Ketebalan bingkai batik */
-            background-image: var(--batik-url);
-            background-size: cover;
-            background-position: center;
-            border-radius: 28px;
-            /* Sudut lebih bulat agar simetris dengan card */
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
         }
 
         .card {
@@ -357,6 +335,7 @@
 </body>
 
 </html>
+
 
 
 
