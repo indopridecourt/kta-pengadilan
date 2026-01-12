@@ -72,14 +72,42 @@
             z-index: 10;
         }
 
-        .side-text {
+        .side-text-wrapper {
+            position: absolute;
             transform: rotate(-90deg);
-            color: #fff;
-            white-space: nowrap;
+            width: 260px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .side-text {
+            text-align: center;
+            white-space: normal;
+        }
+
+        .side-text .latin,
+        .side-text .arti {
+            background: var(--gold-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .side-text .latin {
+            font-style: italic;
             font-size: 11px;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 0.5px;
+            line-height: 1.25;
         }
+
+        .side-text .arti {
+            font-size: 9px;
+            margin-top: 2px;
+            font-weight: normal;
+        }
+
 
         .header {
             margin-left: 45px;
@@ -182,9 +210,24 @@
 
         .ttd-img {
             height: 50px;
-            margin: 2px 0;
-            mix-blend-mode: multiply;
+            margin: 4px 0;
+            mix-blend-mode: normal;
+            /* ⬅️ MATIKAN */
         }
+
+        .stempel-img {
+            position: absolute;
+            top: 18px;
+            width: 90px;
+            opacity: 0.7;
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        .bottom-section {
+            position: absolute;
+        }
+
 
         .sign-line {
             width: 100%;
@@ -223,30 +266,30 @@
             outline: none;
             background: #fffde7;
         }
-@media print {
-    @page {
-        size: 566px 370px;
-        margin: 0;
-    }
 
-    body {
-        margin: 0;
-        padding: 0;
-        background: none !important;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        @media print {
+            @page {
+                size: 566px 370px;
+                margin: 0;
+            }
 
-    body > div:first-child {
-        display: none;
-    }
+            body {
+                margin: 0;
+                padding: 0;
+                background: none !important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
-    .card-frame {
-        box-shadow: none !important;
-    }
-}
+            body>div:first-child {
+                display: none;
+            }
 
+            .card-frame {
+                box-shadow: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -261,8 +304,21 @@
             </div>
 
             <div class="side-batik">
-                <div class="side-text">INTEGRITAS & KEADILAN</div>
+                <div class="side-text-wrapper">
+                    <div class="side-text">
+                        <div class="latin">
+                            Dormiunt aliquando leges, nunquam moriuntur.
+                        </div>
+                        <div class="arti">
+                            (Hukum terkadang tidur, tetapi hukum tidak pernah mati)
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+
+
 
             <div class="header">
                 <img src="logo2.png" class="logo-img" onerror="this.style.opacity='0'">
@@ -298,9 +354,16 @@
 
             <div class="bottom-section">
                 <div style="font-size:10px;">Ketua Pengadilan,</div>
+
+                <!-- STEMPEL -->
+                <img src="stempel.png" class="stempel-img" onerror="this.style.opacity='0'">
+
+                <!-- TTD -->
                 <img src="ttd.png" class="ttd-img" onerror="this.style.opacity='0'">
+
                 <div class="sign-line">KOWE GORILA</div>
             </div>
+
 
             <div class="footer-bar">
                 <div class="kta-text">KARTU TANDA ANGGOTA</div>
@@ -335,12 +398,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
