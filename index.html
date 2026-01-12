@@ -200,20 +200,18 @@
     text-align: center;
 
     font-family: 'Delycost', cursive;
-    font-size: 20px;           /* ⬅️ lebih “hidup” */
-    font-weight: 700;          /* ⬅️ BOLD */
-
+    font-size: 20px;
+    font-weight: 700;
     color: #000;
     outline: none;
 
-    line-height: 1.2;          /* ⬅️ rapih 2 baris */
-    padding-top: 8px;          /* ⬅️ napas atas, gak kepotong */
-    padding-bottom: 0;
+    line-height: 1.2;
+    padding-top: 8px;
 
-    resize: none;
-    white-space: normal;
-    word-break: break-word;
-    overflow: hidden;
+    /* ⬇️ INI KUNCINYA */
+    white-space: nowrap;       /* PAKSA 1 BARIS */
+    overflow: hidden;          /* jangan keluar */
+    text-overflow: clip;       /* jangan titik-titik */
 }
 
 
@@ -442,6 +440,7 @@
 
     </script>
 </body>
+
 
 
 
