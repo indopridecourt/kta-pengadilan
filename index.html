@@ -159,11 +159,13 @@
             z-index: 5;
         }
 
-        .photo-ttd-column {
-            display: flex;
-            flex-direction: column;
-            gap: 0px;
-        }
+.photo-ttd-column {
+    width: 110px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
 
         .photo-area {
             width: 110px;
@@ -187,13 +189,13 @@
 
 .ttd-wrapper {
     position: absolute;
-    top: 150px;        /* tepat di bawah foto */
+    top: 147px;              /* ⬅️ PRESISI NEMPEL FOTO */
     left: 50%;
     transform: translateX(-50%);
-    width: 180px;      /* ⬅️ TTD BEBAS PANJANG */
+    width: 180px;
     height: 46px;
-    pointer-events: auto;
 }
+
 
 .ttd-input {
     width: 100%;
@@ -201,10 +203,7 @@
     border: none;
     background: transparent;
     text-align: center;
-
-    font-family: 'Delycost', cursive;
-    font-size: 18px;
-    font-weight: 600;          /* ⬅️ lebih tegas */
+         /* ⬅️ lebih tegas */
     color: #000;
 
     line-height: 1.4;
@@ -212,6 +211,14 @@
     resize: none;
     outline: none;
     overflow: hidden;
+    white-space: nowrap;     /* ⬅️ KUNCI 1 BARIS */
+    overflow: hidden;
+    text-overflow: clip;
+
+    font-family: 'Delycost', cursive;
+    font-size: 18px;
+    font-weight: 700;        /* lebih bold */
+
 }
 
 
@@ -438,6 +445,7 @@
 
     </script>
 </body>
+
 
 
 
