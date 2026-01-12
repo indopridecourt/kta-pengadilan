@@ -12,6 +12,7 @@
             --emerald: #004d40;
             --gold-grad: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             --border-gold: #bf953f;
+            /* URL Gambar Pola dari Freepik */
         }
 
         body {
@@ -20,16 +21,22 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #FF1493;
             margin: 0;
             font-family: 'Times New Roman', Times, serif;
+            background-color: #FF1493;
+            background-image: url("tokoh.png");
+            /* ganti sesuai file */
+            background-repeat: repeat;
+            background-size: 150px 150px;
+            /* ukuran kecil tapi banyak */
         }
 
+        /* --- BINGKAI LUAR MENGGUNAKAN BATIK --- */
         .card {
             width: 550px;
             height: 330px;
             background: #fff;
-            border-radius: 20px;
+            border-radius: 0px;
             /* Sudut membulat elegan */
             position: relative;
             overflow: hidden;
@@ -40,12 +47,12 @@
 
         .watermark {
             position: absolute;
-            top: 55%;
+            top: 56%;
             left: 55%;
             transform: translate(-50%, -50%);
             width: 180px;
             height: 180px;
-            opacity: 0.08;
+            opacity: 0.15;
             z-index: 0;
             pointer-events: none;
         }
@@ -64,7 +71,7 @@
             height: 100%;
             background-color: var(--emerald);
             background-image: radial-gradient(var(--border-gold) 0.5px, transparent 0.5px);
-            background-size: 8px 8px;
+            background-size: 8.5px 8.5px;
             border-right: 3px solid var(--border-gold);
             display: flex;
             align-items: center;
@@ -72,40 +79,18 @@
             z-index: 10;
         }
 
-        .side-text-wrapper {
-            position: absolute;
-            transform: rotate(-90deg);
-            width: 260px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
         .side-text {
-            text-align: center;
-            white-space: normal;
-        }
-
-        .side-text .latin,
-        .side-text .arti {
+            transform: rotate(-90deg);
+            color: #fff;
+            white-space: nowrap;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
             background: var(--gold-grad);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-align: center;
-        }
-
-        .side-text .latin {
             font-style: italic;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-            line-height: 1.25;
-        }
-
-        .side-text .arti {
-            font-size: 9px;
-            margin-top: 2px;
-            font-weight: normal;
         }
 
 
@@ -120,6 +105,19 @@
             border-bottom: 4px solid var(--border-gold);
             position: relative;
             z-index: 5;
+        }
+
+        /* GARIS EMAS DI ATAS JUDUL */
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 45px;
+            /* posisi tepat di atas tulisan */
+            left: 80px;
+            right: 80px;
+            height: 1px;
+            background: var(--gold-grad);
+            border-radius: 2px;
         }
 
         .logo-img {
@@ -215,18 +213,10 @@
             /* ⬅️ MATIKAN */
         }
 
-        .stempel-img {
-            position: absolute;
-            top: 18px;
-            width: 90px;
-            opacity: 0.7;
-            z-index: 6;
-            pointer-events: none;
-        }
-
         .bottom-section {
             position: absolute;
         }
+
 
 
         .sign-line {
@@ -269,7 +259,7 @@
 
         @media print {
             @page {
-                size: 566px 370px;
+                size: 560px 340px;
                 margin: 0;
             }
 
@@ -280,6 +270,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                border-radius: 20px
             }
 
             body>div:first-child {
@@ -295,7 +286,7 @@
 
 <body>
     <div style="color: #130f0f; font-size: 12px; margin-bottom: 10px; font-family: Arial;">
-        *Klik teks untuk edit | Klik kotak foto untuk ganti foto pegawai
+        *Klik teks untuk edit | Klik kotak foto untuk ganti foto kamu
     </div>
     <div class="card-frame">
         <div class="card">
@@ -304,21 +295,8 @@
             </div>
 
             <div class="side-batik">
-                <div class="side-text-wrapper">
-                    <div class="side-text">
-                        <div class="latin">
-                            Dormiunt aliquando leges, nunquam moriuntur.
-                        </div>
-                        <div class="arti">
-                            (Hukum terkadang tidur, tetapi hukum tidak pernah mati)
-                        </div>
-                    </div>
-                </div>
+                <div class="side-text">PRO JUSTITIA & FIAT JUSTITIA</div>
             </div>
-
-
-
-
 
             <div class="header">
                 <img src="logo2.png" class="logo-img" onerror="this.style.opacity='0'">
@@ -331,7 +309,8 @@
 
             <div class="main-container">
                 <label for="p-input" class="photo-area" id="p-view">
-                    <div style="text-align:center; padding-top:50px; color:#999; font-size:10px;">Klik Foto</div>
+                    <div style="text-align:center; padding-top:50px; color:#999; font-size:10px;">Klik Ganti Foto
+                        terbaikmu</div>
                 </label>
                 <input type="file" id="p-input" hidden onchange="preview(event)">
 
@@ -354,10 +333,6 @@
 
             <div class="bottom-section">
                 <div style="font-size:10px;">Ketua Pengadilan,</div>
-
-                <!-- STEMPEL -->
-                <img src="stempel.png" class="stempel-img" onerror="this.style.opacity='0'">
-
                 <!-- TTD -->
                 <img src="ttd.png" class="ttd-img" onerror="this.style.opacity='0'">
 
@@ -396,5 +371,3 @@
     </script>
 
 </body>
-
-</html>
