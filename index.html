@@ -6,6 +6,7 @@
     <title>KTA Pengadilan Kota Indopride</title>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image-more/2.9.5/dom-to-image-more.min.js"></script>
 
 
 
@@ -419,7 +420,7 @@
             </div>
         </div>
     </div>
-
+<button class="btn-download" onclick="downloadPNG()">DOWNLOAD KTA (PNG)</button>
     <script>
         JsBarcode("#barcode", "INDOPRIDECOURT.XYZ", {
             format: "CODE128",
@@ -441,9 +442,36 @@
             };
             reader.readAsDataURL(file);
         }
+function downloadKTA() {
+    const node = document.querySelector('.card'); // Target langsung ke class card kamu
 
+    // Opsi untuk memastikan kualitas tinggi
+    const scale = 3; 
+    const style = {
+        transform: 'scale(' + scale + ')',
+        transformOrigin: 'top left',
+        width: node.offsetWidth + 'px',
+        height: node.offsetHeight + 'px'
+    };
+
+    domtoimage.toPng(node, {
+        width: node.offsetWidth * scale,
+        height: node.offsetHeight * scale,
+        style: style
+    })
+    .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'KTA_INDOPRIDE_ORIGINAL.png';
+        link.href = dataUrl;
+        link.click();
+    })
+    .catch(function (error) {
+        console.error('Ada masalah saat download:', error);
+    });
+}
     </script>
 
 
 
 </body>
+
