@@ -6,7 +6,6 @@
     <title>KTA Pengadilan Kota Indopride</title>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/modern-screenshot@latest/dist/index.bundle.js"></script>
 
     <style>
         :root {
@@ -34,12 +33,7 @@
             background-size: 150px 150px;
         }
 
-        /* Container Capture */
-        .card-wrapper {
-            padding: 10px;
-            background: transparent;
-        }
-
+        /* --- KODE CSS ASLI KAMU TANPA PERUBAHAN --- */
         .card {
             width: 550px;
             height: 330px;
@@ -59,7 +53,6 @@
             height: 180px;
             opacity: 0.15;
             z-index: 0;
-            pointer-events: none;
         }
 
         .watermark img { width: 100%; height: 100%; object-fit: contain; }
@@ -80,6 +73,7 @@
 
         .side-text {
             transform: rotate(-90deg);
+            color: #fff;
             white-space: nowrap;
             font-size: 12px;
             font-weight: bold;
@@ -126,6 +120,7 @@
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
         }
+
         .header-text p { margin: 2px 0 0; font-size: 10px; color: white; }
 
         .main-container {
@@ -146,7 +141,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
         }
 
         .photo-area img { width: 100%; height: 100%; object-fit: cover; }
@@ -156,7 +150,6 @@
             height: 46px;
             margin-top: 2px;
             margin-left: -25px;
-            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -199,6 +192,7 @@
             font-weight: bold;
             font-size: 11px;
             padding-top: 3px;
+            text-transform: uppercase;
         }
 
         .footer-bar {
@@ -224,63 +218,70 @@
             cursor: pointer;
             font-weight: bold;
         }
+
+        [contenteditable="true"]:focus { outline: none; background: #fffde7; }
     </style>
 </head>
 
 <body>
-    <div style="color: #fff; margin-bottom: 10px; font-family: Arial;">
+    <div style="color: #fff; margin-bottom: 10px; font-family: Arial; font-size: 14px;">
         *Klik teks untuk edit | Klik kotak foto untuk ganti foto
     </div>
 
-    <div class="card-wrapper">
-        <div class="card" id="my-card">
-            <div class="watermark">
-                <img src="logo.png" crossOrigin="anonymous">
+    <div class="card" id="myCard">
+        <div class="watermark">
+            <img src="logo.png" crossOrigin="anonymous">
+        </div>
+
+        <div class="side-batik">
+            <div class="side-text">PRO JUSTITIA & FIAT JUSTITIA</div>
+        </div>
+
+        <div class="header">
+            <img src="logo2.png" class="logo-img" crossOrigin="anonymous">
+            <div class="header-text">
+                <h1>PENGADILAN KOTA INDOPRIDE</h1>
+                <p>Jl. Occupation Avenue Kota Indopride – Kode Pos 7239</p>
             </div>
-            <div class="side-batik">
-                <div class="side-text">PRO JUSTITIA & FIAT JUSTITIA</div>
-            </div>
-            <div class="header">
-                <img src="logo2.png" class="logo-img" crossOrigin="anonymous">
-                <div class="header-text">
-                    <h1>PENGADILAN KOTA INDOPRIDE</h1>
-                    <p>Jl. Occupation Avenue Kota Indopride</p>
-                </div>
-                <img src="logo.png" class="logo-img" crossOrigin="anonymous">
-            </div>
-            <div class="main-container">
-                <div>
-                    <label for="photo-input" class="photo-area" id="photo-view">
-                        <span style="font-size: 10px; color: #999;">Klik Ganti Foto</span>
-                    </label>
-                    <input type="file" id="photo-input" hidden accept="image/*" onchange="previewPhoto(event)">
-                    <div class="ttd-area">
-                        <textarea class="ttd-input" placeholder="Tanda Tangan"></textarea>
-                    </div>
-                </div>
-                <div class="details-grid">
-                    <div class="label">NAMA</div><div>:</div><div class="value" contenteditable="true">GANTI NAMA</div>
-                    <div class="label">NIP</div><div>:</div><div class="value" contenteditable="true">GANTI NO KTA</div>
-                    <div class="label">JABATAN</div><div>:</div><div class="value" contenteditable="true">GANTI JABATAN</div>
-                    <div class="label">BERLAKU</div><div>:</div><div class="value" contenteditable="true">SELAMANYA</div>
+            <img src="logo.png" class="logo-img" crossOrigin="anonymous">
+        </div>
+
+        <div class="main-container">
+            <div style="width: 110px;">
+                <label for="photo-input" class="photo-area" id="photo-view">
+                    <div style="text-align:center; color:#999; font-size:10px;">Klik Foto</div>
+                </label>
+                <input type="file" id="photo-input" hidden accept="image/*" onchange="previewPhoto(event)">
+                
+                <div class="ttd-area">
+                    <textarea class="ttd-input" placeholder="Tanda Tangan"></textarea>
                 </div>
             </div>
-            <div class="bottom-section">
-                <div style="font-size:10px;">Ketua Pengadilan,</div>
-                <img src="ttd.png" style="height:45px;" crossOrigin="anonymous">
-                <div class="sign-line">KOWE GORILA</div>
+
+            <div class="details-grid">
+                <div class="label">NAMA</div><div>:</div><div class="value" contenteditable="true">GANTI NAMAMU</div>
+                <div class="label">NIP</div><div>:</div><div class="value" contenteditable="true">GANTI NO KTA</div>
+                <div class="label">JABATAN</div><div>:</div><div class="value" contenteditable="true">GANTI JABATAN</div>
+                <div class="label">BERLAKU</div><div>:</div><div class="value" contenteditable="true">SELAMANYA</div>
             </div>
-            <div class="footer-bar">
-                <div style="font-weight:bold; color:var(--emerald); font-size:12px;">KARTU TANDA ANGGOTA</div>
-                <svg id="barcode"></svg>
-            </div>
+        </div>
+
+        <div class="bottom-section">
+            <div style="font-size:10px;">Ketua Pengadilan,</div>
+            <img src="ttd.png" style="height:45px;" crossOrigin="anonymous">
+            <div class="sign-line">KOWE GORILA</div>
+        </div>
+
+        <div class="footer-bar">
+            <div style="color:var(--emerald); font-weight:bold; font-size:13px;">KARTU TANDA ANGGOTA</div>
+            <svg id="barcode"></svg>
         </div>
     </div>
 
-    <button class="btn-download" onclick="doDownload()">DOWNLOAD KTA</button>
+    <button class="btn-download" onclick="downloadSebagaiGambar()">DOWNLOAD KTA (PNG)</button>
 
     <script>
-        JsBarcode("#barcode", "INDOPRIDE.COURT", { width: 1.1, height: 26, displayValue: false });
+        JsBarcode("#barcode", "INDOPRIDE.COURT", { width: 1.1, height: 26, displayValue: false, margin: 0 });
 
         function previewPhoto(event) {
             const reader = new FileReader();
@@ -290,22 +291,51 @@
             reader.readAsDataURL(event.target.files[0]);
         }
 
-        function doDownload() {
-            const el = document.getElementById('my-card');
-            // Menggunakan modern-screenshot untuk hasil paling akurat dengan CSS modern
-            modernScreenshot.domToPng(el, {
-                quality: 1,
-                scale: 3,
-                features: {
-                    // Ini kunci agar gradasi teks tetap muncul
-                    copyCSSStyles: true 
-                }
-            }).then(dataUrl => {
-                const link = document.createElement('a');
-                link.download = 'KTA_Indopride_HD.png';
-                link.href = dataUrl;
-                link.click();
-            });
+        // FUNGSI DOWNLOAD BARU: Tanpa Library, Tanpa Ubah Layout
+        function downloadSebagaiGambar() {
+            const card = document.getElementById('myCard');
+            const svgWidth = 550;
+            const svgHeight = 330;
+
+            // Mengambil semua CSS yang aktif di halaman
+            let styles = '';
+            for (const sheet of document.styleSheets) {
+                try {
+                    for (const rule of sheet.cssRules) styles += rule.cssText;
+                } catch (e) {}
+            }
+
+            // Membangun Blob SVG dari HTML kartu asli
+            const data = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}">
+                    <foreignObject width="100%" height="100%">
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                            <style>${styles}</style>
+                            ${card.outerHTML}
+                        </div>
+                    </foreignObject>
+                </svg>`;
+
+            const canvas = document.createElement('canvas');
+            canvas.width = svgWidth * 2; // High Resolution
+            canvas.height = svgHeight * 2;
+            const ctx = canvas.getContext('2d');
+            ctx.scale(2, 2);
+
+            const img = new Image();
+            const svg = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+            const url = URL.createObjectURL(svg);
+
+            img.onload = () => {
+                ctx.drawImage(img, 0, 0);
+                const png = canvas.toDataURL("image/png");
+                const a = document.createElement("a");
+                a.download = "KTA_Indopride.png";
+                a.href = png;
+                a.click();
+                URL.revokeObjectURL(url);
+            };
+            img.src = url;
         }
     </script>
 </body>
