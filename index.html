@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>KTA Pengadilan Kota Indopride</title>
+    <title>KTA Pengadilan Indopride</title>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -15,6 +15,7 @@
             --border-gold: #bf953f;
         }
 
+        /* Pastikan font terdaftar dengan benar agar terbaca saat download */
         @font-face {
             font-family: 'Delycost';
             src: url('Delycost.ttf') format('truetype');
@@ -34,11 +35,17 @@
             background-size: 150px 150px;
         }
 
+        /* Container Pembungkus agar tidak ada bagian yang terpotong */
+        #kta-box {
+            padding: 0;
+            background: transparent;
+            display: inline-block;
+        }
+
         .card {
             width: 550px;
             height: 330px;
             background: #fff;
-            border-radius: 0px;
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(0, 0, 0, 0.1);
@@ -47,7 +54,7 @@
 
         .watermark {
             position: absolute;
-            top: 56%;
+            top: 50%;
             left: 55%;
             transform: translate(-50%, -50%);
             width: 180px;
@@ -73,24 +80,22 @@
             background-image: radial-gradient(var(--border-gold) 0.5px, transparent 0.5px);
             background-size: 8.5px 8.5px;
             border-right: 3px solid var(--border-gold);
+            z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10;
         }
 
         .side-text {
             transform: rotate(-90deg);
-            color: #fff;
+            color: #bf953f; /* Gunakan warna solid jika gradasi teks gagal */
             white-space: nowrap;
             font-size: 12px;
             font-weight: bold;
             letter-spacing: 2px;
-            background: var(--gold-grad);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             text-align: center;
             font-style: italic;
+            width: 300px;
         }
 
         .header {
@@ -99,22 +104,10 @@
             height: 85px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
             padding: 0 15px;
             border-bottom: 4px solid var(--border-gold);
             position: relative;
             z-index: 5;
-        }
-
-        .header::before {
-            content: "";
-            position: absolute;
-            top: 45px;
-            left: 80px;
-            right: 80px;
-            height: 1px;
-            background: var(--gold-grad);
-            border-radius: 2px;
         }
 
         .logo-img {
@@ -131,9 +124,7 @@
         .header-text h1 {
             margin: 0;
             font-size: 19px;
-            background: var(--gold-grad);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #fcf6ba; /* Warna solid agar lebih stabil saat download */
             text-transform: uppercase;
         }
 
@@ -152,20 +143,15 @@
             z-index: 5;
         }
 
-        .photo-ttd-column {
-            display: flex;
-            flex-direction: column;
-            gap: 0px;
-            width: 110px;
-        }
-
         .photo-area {
             width: 110px;
             height: 145px;
             border: 2px solid var(--border-gold);
             background: #eee;
             overflow: hidden;
-            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .photo-area img {
@@ -175,14 +161,9 @@
         }
 
         .ttd-area {
-            width: 190px;
-            height: 46px;
-            margin-top: 2px;
-            margin-left: -25px;
-            background: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 180px;
+            height: 50px;
+            margin-left: -20px;
         }
 
         .ttd-input {
@@ -191,60 +172,37 @@
             background: transparent;
             text-align: center;
             font-family: 'Delycost', cursive;
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 22px;
             color: #000;
             outline: none;
-            line-height: 1.7;
-            padding-top: 6px;
             resize: none;
-            overflow: hidden;
         }
 
         .details-grid {
             flex-grow: 1;
             display: grid;
             grid-template-columns: 80px 10px 1fr;
-            row-gap: 6px;
-            align-content: start;
+            row-gap: 8px;
             font-size: 14px;
         }
 
-        .label {
-            font-weight: bold;
-            color: var(--emerald);
-        }
-
-        .value {
-            font-family: 'times new roman', Courier, monospace;
-            font-weight: bold;
-            color: #3b3a3a;
-        }
+        .label { font-weight: bold; color: var(--emerald); }
+        .value { font-weight: bold; color: #3b3a3a; }
 
         .bottom-section {
             position: absolute;
             bottom: 35px;
             right: 20px;
             width: 200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             text-align: center;
             z-index: 5;
         }
 
-        .ttd-img {
-            height: 50px;
-            margin: 4px 0;
-        }
-
         .sign-line {
-            width: 100%;
             border-top: 1.5px solid #000;
             font-weight: bold;
             font-size: 11px;
             padding-top: 3px;
-            text-transform: uppercase;
         }
 
         .footer-bar {
@@ -261,131 +219,96 @@
             border-top: 1px solid #ddd;
         }
 
-        .kta-text {
-            color: var(--emerald);
-            font-weight: bold;
-            font-size: 13px;
-        }
-
-        #barcode {
-            height: 30px;
-        }
-
-        [contenteditable="true"]:focus {
-            outline: none;
-            background: #fffde7;
-        }
-
-        /* GAYA TOMBOL DOWNLOAD */
         .btn-download {
             margin-top: 20px;
-            padding: 10px 25px;
+            padding: 10px 30px;
             background: #013c32;
             color: #fcf6ba;
             border: 2px solid #bf953f;
-            font-family: Arial, sans-serif;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .btn-download:hover {
-            background: #025345;
-            color: #fff;
+            border-radius: 5px;
         }
     </style>
 </head>
 
 <body>
-    <div style="color: #f6f0f0; font-size: 15px; margin-bottom: 10px; font-family: Arial;">
-        *Klik teks untuk edit | Klik kotak foto untuk ganti foto kamu
-    </div>
-
     <div id="kta-box">
         <div class="card">
             <div class="watermark">
-                <img src="logo.png" onerror="this.style.display='none'">
+                <img src="logo.png" crossOrigin="anonymous">
             </div>
-
             <div class="side-batik">
                 <div class="side-text">PRO JUSTITIA & FIAT JUSTITIA</div>
             </div>
-
             <div class="header">
-                <img src="logo2.png" class="logo-img" onerror="this.style.opacity='0'">
+                <img src="logo2.png" class="logo-img" crossOrigin="anonymous">
                 <div class="header-text">
                     <h1>PENGADILAN KOTA INDOPRIDE</h1>
-                    <p>Jl. Occupation Avenue Kota Indopride – Kode Pos 7239</p>
+                    <p>Jl. Occupation Avenue Kota Indopride</p>
                 </div>
-                <img src="logo.png" class="logo-img" onerror="this.style.opacity='0'">
+                <img src="logo.png" class="logo-img" crossOrigin="anonymous">
             </div>
-
             <div class="main-container">
-                <div class="photo-ttd-column">
+                <div>
                     <label for="photo-input" class="photo-area" id="photo-view">
-                        <div style="text-align:center; padding-top:50px; color:#999; font-size:10px;">Klik Disini <br> Ganti Foto</div>
+                        <span style="font-size: 10px; color: #999;">Klik Foto</span>
                     </label>
                     <input type="file" id="photo-input" hidden accept="image/*" onchange="previewPhoto(event)">
                     <div class="ttd-area">
-                        <textarea class="ttd-input" rows="2" placeholder="Tanda Tangan"></textarea>
+                        <textarea class="ttd-input" placeholder="Tanda Tangan"></textarea>
                     </div>
                 </div>
-
                 <div class="details-grid">
                     <div class="label">NAMA</div><div>:</div><div class="value" contenteditable="true">GANTI NAMAMU</div>
-                    <div class="label">NIP</div><div>:</div><div class="value" contenteditable="true">GANTI NO KTA MU</div>
-                    <div class="label">JABATAN</div><div>:</div><div class="value" contenteditable="true">GANTI JABATANMU</div>
+                    <div class="label">NIP</div><div>:</div><div class="value" contenteditable="true">GANTI NO KTA</div>
+                    <div class="label">JABATAN</div><div>:</div><div class="value" contenteditable="true">GANTI JABATAN</div>
                     <div class="label">BERLAKU</div><div>:</div><div class="value" contenteditable="true">SELAMANYA</div>
                 </div>
             </div>
-
             <div class="bottom-section">
-                <div style="font-size:10px;">Ketua Pengadilan,</div>
-                <img src="ttd.png" class="ttd-img" onerror="this.style.opacity='0'">
+                <div style="font-size: 10px;">Ketua Pengadilan,</div>
+                <img src="ttd.png" style="height:40px;" crossOrigin="anonymous">
                 <div class="sign-line">KOWE GORILA</div>
             </div>
-
             <div class="footer-bar">
-                <div class="kta-text">KARTU TANDA ANGGOTA</div>
+                <div style="font-weight: bold; color: #013c32; font-size: 12px;">KARTU TANDA ANGGOTA</div>
                 <svg id="barcode"></svg>
             </div>
         </div>
     </div>
 
-    <button class="btn-download" onclick="downloadKTA()">DOWNLOAD KARTU (PNG)</button>
+    <button class="btn-download" onclick="downloadKTA()">DOWNLOAD KTA</button>
 
     <script>
-        // Inisialisasi Barcode
-        JsBarcode("#barcode", "INDOPRIDECOURT.XYZ", {
-            format: "CODE128", width: 1.1, height: 26, displayValue: false, margin: 0
-        });
+        JsBarcode("#barcode", "INDOPRIDE.COURT", { width: 1.1, height: 25, displayValue: false });
 
-        // Preview Foto
         function previewPhoto(event) {
-            const file = event.target.files[0];
-            if (!file) return;
             const reader = new FileReader();
             reader.onload = () => {
                 document.getElementById('photo-view').innerHTML = `<img src="${reader.result}">`;
             };
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(event.target.files[0]);
         }
 
-        // FUNGSI DOWNLOAD KTA
-        function downloadKTA() {
+        async function downloadKTA() {
             const container = document.getElementById("kta-box");
             
-            // html2canvas menangkap elemen kta-box
-            html2canvas(container, {
-                scale: 3, // Hasil kualitas HD
-                useCORS: true, // Mengizinkan gambar dari GitHub
-                backgroundColor: null // Transparan di luar kartu
-            }).then(canvas => {
-                const link = document.createElement("a");
-                link.download = "KTA_Indopride.png";
-                link.href = canvas.toDataURL("image/png");
-                link.click();
+            // Menunggu sebentar agar semua elemen render sempurna
+            const canvas = await html2canvas(container, {
+                scale: 3,           // Resolusi tinggi
+                useCORS: true,      // Penting untuk GitHub
+                allowTaint: false,
+                logging: false,
+                letterRendering: true, // Memperbaiki rendering teks
+                scrollX: 0,
+                scrollY: -window.scrollY // Mencegah pergeseran jika halaman di-scroll
             });
+
+            const link = document.createElement("a");
+            link.download = "KTA_Indopride_HD.png";
+            link.href = canvas.toDataURL("image/png", 1.0);
+            link.click();
         }
     </script>
 </body>
