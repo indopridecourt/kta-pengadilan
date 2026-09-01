@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <title>KTA Pengadilan Kota Indopride</title>
-    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-
-    <!-- 2. Skrip Verifikasi PIN Langsung -->
+    <style>
+        /* Sembunyikan web sepenuhnya sampai PIN terverifikasi */
+        body { display: none !important; }
+    </style>
     <script>
-        const PIN_WEB_INTERNAL = "1234"; // Sesuaikan PIN web ini
+        const PIN_WEB_INTERNAL = "1235"; // Sesuaikan PIN di sini
 
         (function() {
             let aksesDiberikan = false;
             
-            // Cek session biar tidak minta PIN terus kalau di-refresh
+            // Cek session agar tidak minta PIN berulang kali saat refresh
             if (sessionStorage.getItem('auth_internal') === 'true') {
                 aksesDiberikan = true;
             } else {
-                const input = prompt("🔒 [SECURITY CHECK]\nMasukkan PIN Akses Layanan Internal Pengadilan Kota #indopride:");
+                let input = prompt("🔒 [SECURITY CHECK]\nMasukkan PIN Akses Layanan Internal Pengadilan Kota Indopride:");
+                
+                // Perulangan jika PIN salah (selama pengguna tidak menekan tombol Cancel)
+                while (input !== null && input !== PIN_WEB_INTERNAL) {
+                    alert("❌ PIN Salah! Silakan coba lagi.");
+                    input = prompt("🔒 [SECURITY CHECK]\nMasukkan PIN Akses Layanan Internal Pengadilan Kota Indopride:");
+                }
+
+                // Jika PIN benar
                 if (input === PIN_WEB_INTERNAL) {
                     sessionStorage.setItem('auth_internal', 'true');
                     aksesDiberikan = true;
@@ -26,16 +33,19 @@
             }
 
             if (aksesDiberikan) {
-                // Tampilkan kembali body web jika PIN benar
+                // Tampilkan web jika PIN benar
                 document.addEventListener("DOMContentLoaded", function() {
-                    document.body.style.setProperty("display", "block", "important");
+                    document.body.style.setProperty("display", "flex", "important");
                 });
             } else {
-                alert("❌ Akses ditolak! PIN tidak valid.");
-                window.location.href = "about:blank"; // Lempar keluar jika PIN salah
+                // Jika klik Cancel / Batal
+                alert("❌ Akses dibatalkan.");
+                window.location.href = "about:blank"; // Lempar keluar
             }
         })();
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         :root {
             --emerald: #013c32;
