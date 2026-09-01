@@ -6,10 +6,6 @@
     <title>KTA Pengadilan Kota Indopride</title>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-<!-- 1. CSS Menyembunyikan Isi Web Sebelum Verifikasi -->
-    <style>
-        body { display: none !important; }
-    </style>
 
     <!-- 2. Skrip Verifikasi PIN Langsung -->
     <script>
@@ -22,7 +18,7 @@
             if (sessionStorage.getItem('auth_internal') === 'true') {
                 aksesDiberikan = true;
             } else {
-                const input = prompt("🔒 [SECURITY CHECK]\nMasukkan PIN Akses Layanan Internal Pengadilan Negeri:");
+                const input = prompt("🔒 [SECURITY CHECK]\nMasukkan PIN Akses Layanan Internal Pengadilan Kota #indopride:");
                 if (input === PIN_WEB_INTERNAL) {
                     sessionStorage.setItem('auth_internal', 'true');
                     aksesDiberikan = true;
